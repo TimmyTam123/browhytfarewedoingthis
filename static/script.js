@@ -4,18 +4,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const decreaseBtn = document.getElementById('decreaseTemp');
   const increaseBtn = document.getElementById('increaseTemp');
 
-  const minTemp = 0;
-  const maxTemp = 40;
-  const arcLength = 565; // Approximate length of semicircle path
+  const displayMin = 0;
+  const displayMax = 40;
+  const controlMin = 10;
+  const controlMax = 30;
+  const arcLength = 283;
 
   function updateGauge(temp) {
-    const percent = (temp - minTemp) / (maxTemp - minTemp);
+    const percent = (temp - displayMin) / (displayMax - displayMin);
     const fillLength = percent * arcLength;
     gaugeFill.setAttribute('stroke-dasharray', `${fillLength} ${arcLength - fillLength}`);
   }
 
   function setTemp(newTemp) {
-    newTemp = Math.max(minTemp, Math.min(maxTemp, newTemp));
+    newTemp = Math.max(controlMin, Math.min(controlMax, newTemp));
     tempEl.textContent = `${newTemp}°`;
     updateGauge(newTemp);
   }
@@ -30,6 +32,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setTemp(current + 1);
   });
 
-  // Initialize
   updateGauge(parseInt(tempEl.textContent));
 });

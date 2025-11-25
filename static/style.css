@@ -18,6 +18,8 @@ html, body {
   color: var(--text);
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
+box-sizing: border-box;
+
 }
 
 .container {
@@ -66,9 +68,11 @@ html, body {
 .center {
   display: grid;
   justify-items: center;
-  gap: 10px;
-  margin: 8px 0 20px;
+  gap: 24px;
+  margin: 32px 0 48px;
 }
+
+
 .room {
   color: var(--muted);
   font-weight: 600;
@@ -77,41 +81,78 @@ html, body {
 
 .gauge {
   position: relative;
-  width: 200px;
-  height: 120px;
+  width: 240px;
+  height: 160px;
   margin: 0 auto;
 }
+
 .gauge-svg {
   width: 100%;
   height: 100%;
 }
+
 .temperature {
   position: absolute;
-  top: 40px;
+  top: 48px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 36px;
+  font-size: 40px;
   font-weight: bold;
+  color: white;
+  z-index: 1;
 }
+
 .dial-controls {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
-  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  margin-top: 100px; /* pushes it below gauge cleanly */
 }
-.btn {
+
+.dial-controls .btn {
   background: #1a1f2a;
-  border: 1px solid var(--border);
-  color: var(--text);
-  border-radius: 10px;
-  padding: 8px 12px;
+  border: 1px solid #2a3442;
+  color: #ffffff;
+  border-radius: 50%;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
 }
-.btn.small { padding: 6px 10px; }
-.btn:hover { background: #202636; }
-.power-btn { color: var(--accent); border-color: #2a3a48; }
+
+/* Side buttons */
+.dial-controls .btn.small {
+  width: 48px;
+  height: 48px;
+  font-size: 24px;
+}
+
+/* Center power button */
+.dial-controls .btn.large {
+  width: 104px;
+  height: 104px;
+  padding: 0;
+  border-width: 2px;
+  border-color: #69c2e9;
+  background: #1a1f2a;
+  color: #69c2e9;
+  box-shadow: 0 0 20px rgba(105, 194, 233, 0.4);
+  z-index: 2;
+}
+
+.dial-controls .btn.large svg {
+  width: 44px;
+  height: 44px;
+}
+
+/* Optional: hover feedback */
+.dial-controls .btn:hover { background: #202636; }
+.power-btn {
+  color: #69c2e9;
+}
 
 /* Charts */
 .charts {
@@ -120,6 +161,14 @@ html, body {
   gap: 16px;
   margin: 18px 0;
 }
+
+.charts {
+  margin-top: 48px;
+}
+.lists.two-col {
+  margin-top: 32px;
+}
+
 .chart-box {
   background: var(--panel);
   border: 1px solid var(--border);

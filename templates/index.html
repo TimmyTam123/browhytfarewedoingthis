@@ -26,14 +26,19 @@
 <div class="gauge">
   <svg viewBox="0 0 200 100" class="gauge-svg">
     <path d="M10 100 A90 90 0 0 1 190 100" stroke="#2a3442" stroke-width="20" fill="none" />
-    <path id="gaugeFill" d="M10 100 A90 90 0 0 1 190 100" stroke="#69c2e9" stroke-width="20" fill="none" stroke-dasharray="0 565" />
+    <path id="gaugeFill" d="M10 100 A90 90 0 0 1 190 100" stroke="#69c2e9" stroke-width="20" fill="none" stroke-dasharray="0 283" />
   </svg>
   <div class="temperature" id="temperature">23°</div>
-  <div class="dial-controls">
+    <div class="dial-controls">
     <button class="btn small" id="decreaseTemp">-</button>
-    <button class="btn power-btn">⏻</button>
+<button class="btn power-btn large" id="powerBtn">
+  <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="12" y1="2" x2="12" y2="12" />
+    <path d="M6.3 6.3a9 9 0 1 0 11.4 0" />
+  </svg>
+</button>
     <button class="btn small" id="increaseTemp">+</button>
-  </div>
+    </div>
 </div>
   </div>
 
