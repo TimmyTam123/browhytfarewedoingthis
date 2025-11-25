@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const sidebar = document.getElementById('sidebar');
 const toggleBtn = document.getElementById("toggleTheme");
   const root = document.documentElement;
+  sidebar.classList.add('ready');
 
   // Load saved theme from localStorage, or default to light
   const savedTheme = localStorage.getItem("theme") || "light";
@@ -102,7 +103,7 @@ if (increaseBtn && tempEl) {
     setTemp(current + 1);
   });
 }
-if (hamburger && sidebar) {
+  if (hamburger && sidebar) {
     hamburger.addEventListener('click', () => {
       sidebar.classList.toggle('open');
       console.log('Hamburger clicked, sidebar toggled.');

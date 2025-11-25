@@ -173,7 +173,7 @@ html, body {
 
 /* Optional hover */
 :root[data-theme="dark"] .hamburger {
-  color: #eeffdb; /* light greenish-white from your palette */
+  color: #f8fff0; /* light greenish-white from your palette */
 }
 
 :root[data-theme="light"] .hamburger {
@@ -379,24 +379,105 @@ html, body {
   color: var(--border); /* dark tone for icon lines */
 }
 
-/* Sidebar */
+
+/* Sidebar base */
+/* Sidebar base */
 .sidebar {
   position: fixed;
   top: 0;
-  left: -260px; /* hidden by default */
+  left: 0;
   width: 240px;
   height: 100%;
   background: var(--panel-2);
   border-right: 1px solid var(--border);
   padding: 20px;
   box-shadow: 4px 0 12px var(--shadow-3);
-  transition: left 0.3s ease;
   z-index: 150;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  transform: translateX(-260px);
+  opacity: 0;
+  pointer-events: none;
 }
 
+/* Only animate once .ready is applied */
+.sidebar.ready {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+.leaderboard-footer {
+  padding: 24px;
+  margin-bottom: 20px;
+  background: var(--panel);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+}
+
+.footer-heading {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.efficiency-card {
+  display: flex;
+  align-items: center;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 6px var(--shadow-2);
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  margin-right: 16px;
+}
+
+.card-content {
+  flex: 1;
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.card-metrics {
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.metric span {
+  font-weight: 500;
+}
+
+/* Specific coloring */
+.metric:first-child span {
+  color: var(--bad); /* current usage */
+}
+
+.metric:last-child span {
+  color: var(--good); /* target usage */
+}
 html, body {
   height: 100%;
   background: var(--bg);
@@ -575,7 +656,9 @@ html, body {
 .leaderboard-wrapper {
   max-width: 480px;
   margin: 0 auto;
-  padding: 24px 16px 120px; /* bottom padding for nav bar */
+  padding: 24px 16px 180px; /* top, sides, bottom */
+
+
 }
 
 .section {
