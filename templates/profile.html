@@ -41,35 +41,27 @@
     </div>
   </div>
 
+<!-- YOUR DATA SECTION -->
 <div class="data-section">
   <div class="section-heading">Your Data</div>
+
+  <!-- Toggle buttons -->
   <div class="toggle-buttons">
-    <button class="toggle-btn active">Daily</button>
-    <button class="toggle-btn">Weekly</button>
+    <button class="toggle-btn active" onclick="setMode('daily')">Daily</button>
+    <button class="toggle-btn" onclick="setMode('weekly')">Weekly</button>
   </div>
-  <div class="date-buttons">
-    <button class="date-btn">23 Tuesday</button>
-    <button class="date-btn">24 Wednesday</button>
-    <button class="date-btn">25 Thursday</button>
-    <button class="date-btn">26 Friday</button>
-  </div>
+
+  <!-- Dynamic buttons -->
+  <div class="date-buttons" id="dateButtons"></div>
+
+  <!-- Line graph -->
   <div class="line-graph">
-    <!-- Placeholder for graph -->
     <div class="graph-grid">
-      <div class="graph-labels">
-        <span>0:00</span><span>6:00</span><span>12:00</span><span>18:00</span>
-      </div>
-      <div class="graph-lines">
-        <!-- You can replace this with canvas or SVG later -->
-        <div class="graph-point" style="left: 10%; bottom: 25%;"></div>
-        <div class="graph-point" style="left: 30%; bottom: 60%;"></div>
-        <div class="graph-point" style="left: 50%; bottom: 40%;"></div>
-        <div class="graph-point" style="left: 70%; bottom: 30%;"></div>
-      </div>
+      <div class="graph-labels" id="graphLabels"></div>
+      <div class="graph-lines" id="graphLines"></div>
     </div>
   </div>
 </div>
-
 <!-- WEEKLY STATS SECTION -->
 <div class="weekly-stats">
   <div class="section-heading">Weekly Stats</div>
@@ -128,5 +120,6 @@
 </a>
 </div>
 </div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
