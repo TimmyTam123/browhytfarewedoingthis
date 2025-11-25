@@ -425,6 +425,137 @@ html, body {
   border-radius: 15px;
 }
 
+.section-heading {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 16px 0 8px;
+}
+
+.toggle-buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.toggle-btn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: var(--panel-5);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.toggle-btn.active {
+  background: var(--accent-2);
+  color: var(--bg);
+}
+
+.date-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.date-btn {
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: var(--panel-3);
+  border: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text);
+}
+
+.line-graph {
+  height: 120px;
+  background: var(--panel);
+  border-radius: 12px;
+  padding: 12px;
+  position: relative;
+}
+
+.graph-grid {
+  position: relative;
+  height: 100%;
+}
+
+.graph-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.graph-lines {
+  position: relative;
+  height: 100%;
+}
+
+.graph-point {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.weekly-stats {
+  margin-top: 24px;
+}
+
+.stat-cards {
+  display: flex;
+  gap: 12px;
+}
+
+.stat-card {
+  flex: 1;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  box-shadow: 0 2px 6px var(--shadow-2);
+}
+
+.stat-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.stat-icon {
+  font-size: 20px;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: var(--panel-5);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid var(--border);
+  z-index: 200;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--muted);
+}
+
+.nav-btn.active {
+  color: var(--accent);
+}
+
 .footer-heading {
   font-size: 18px;
   font-weight: 700;
