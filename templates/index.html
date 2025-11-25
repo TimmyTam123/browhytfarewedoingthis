@@ -23,15 +23,18 @@
   <div class="center">
     <div class="room">Living Room</div>
 
-    <div class="gauge">
-    <div class="gauge-arc" id="gaugeArc"></div>
-    <div class="temperature" id="temperature">23°</div>
-    <div class="dial-controls">
-        <button class="btn small" id="decreaseTemp">-</button>
-        <button class="btn power-btn">⏻</button>
-        <button class="btn small" id="increaseTemp">+</button>
-    </div>
-    </div>
+<div class="gauge">
+  <svg viewBox="0 0 200 100" class="gauge-svg">
+    <path d="M10 100 A90 90 0 0 1 190 100" stroke="#2a3442" stroke-width="20" fill="none" />
+    <path id="gaugeFill" d="M10 100 A90 90 0 0 1 190 100" stroke="#69c2e9" stroke-width="20" fill="none" stroke-dasharray="0 565" />
+  </svg>
+  <div class="temperature" id="temperature">23°</div>
+  <div class="dial-controls">
+    <button class="btn small" id="decreaseTemp">-</button>
+    <button class="btn power-btn">⏻</button>
+    <button class="btn small" id="increaseTemp">+</button>
+  </div>
+</div>
   </div>
 
   <!-- CHARTS -->

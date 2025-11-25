@@ -1,15 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
   const tempEl = document.getElementById('temperature');
-  const gaugeArc = document.getElementById('gaugeArc');
+  const gaugeFill = document.getElementById('gaugeFill');
   const decreaseBtn = document.getElementById('decreaseTemp');
   const increaseBtn = document.getElementById('increaseTemp');
 
   const minTemp = 0;
   const maxTemp = 40;
+  const arcLength = 565; // Approximate length of semicircle path
 
   function updateGauge(temp) {
-    const percent = ((temp - minTemp) / (maxTemp - minTemp)) * 100;
-    gaugeArc.style.background = `conic-gradient(from 180deg, var(--accent) 0% ${percent}%, #2a3442 ${percent}% 100%)`;
+    const percent = (temp - minTemp) / (maxTemp - minTemp);
+    const fillLength = percent * arcLength;
+    gaugeFill.setAttribute('stroke-dasharray', `${fillLength} ${arcLength - fillLength}`);
   }
 
   function setTemp(newTemp) {
@@ -28,6 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setTemp(current + 1);
   });
 
-  // Initialize gauge
+  // Initialize
   updateGauge(parseInt(tempEl.textContent));
 });
