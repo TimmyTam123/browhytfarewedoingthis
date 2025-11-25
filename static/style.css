@@ -126,7 +126,13 @@ box-sizing: border-box;
 .dial-controls .btn.small {
   width: 48px;
   height: 48px;
+  aspect-ratio: 1 / 1;         /* ensures perfect circle */
   font-size: 24px;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Center power button */
@@ -177,6 +183,8 @@ box-sizing: border-box;
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 12px;
+  overflow: visible;
+  
 }
 .chart-box .title {
   color: var(--muted);
@@ -186,8 +194,14 @@ box-sizing: border-box;
 
 .chart-svg {
   width: 100%;
-  height: 60px;
+  height: 80px;
   background: linear-gradient(to bottom, #141820, #161a24);
+}
+
+.chart-svg path {
+  stroke: #69c2e9;
+  stroke-width: 2;
+  fill: none;
 }
 
 .chart-line {
