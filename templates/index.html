@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Home Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+
+  <!-- TOP BAR: level + progress -->
+  <div class="top-bar">
+    <div class="level-progress">
+      <span class="exp-text">15 exp until lv up</span>
+      <div class="exp-bar"><div class="exp-fill" style="width: 65%;"></div></div>
+      <span class="level">Lv 16</span>
+    </div>
+  </div>
+
+  <!-- CENTER: room + circular gauge -->
+  <div class="center">
+    <div class="room">Living Room</div>
+
+    <div class="gauge">
+    <div class="gauge-arc" id="gaugeArc"></div>
+    <div class="temperature" id="temperature">23°</div>
+    <div class="dial-controls">
+        <button class="btn small" id="decreaseTemp">-</button>
+        <button class="btn power-btn">⏻</button>
+        <button class="btn small" id="increaseTemp">+</button>
+    </div>
+    </div>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="charts">
+    <div class="chart-box">
+      <div class="title">Last 7 days</div>
+      <div class="chart-line"></div>
+    </div>
+    <div class="chart-box">
+      <div class="title">Last 24 hours</div>
+      <div class="chart-line"></div>
+    </div>
+  </div>
+
+  <!-- TWO COLUMNS: rankings + appliances -->
+  <div class="lists two-col">
+    <div class="ranking">
+      <div class="title">Energy Rankings</div>
+      <div class="row"><span>Franz</span> <span class="arrow up">↑ 1708 exp</span></div>
+      <div class="row"><span>Frederick</span> <span class="arrow down">↓ 1705 exp</span></div>
+      <div class="row"><span>You</span> <span class="arrow same">= 1702 exp</span></div>
+      <div class="row"><span>Ludwig</span> <span class="arrow same">= 1698 exp</span></div>
+      <div class="row"><span>John</span> <span class="arrow same">= 1694 exp</span></div>
+    </div>
+
+    <div class="most-energy">
+      <div class="title">Most Energy Appliances</div>
+      <div class="row"><span>Fridge</span> <span>13 kwh</span></div>
+      <div class="row"><span>Air Conditioning</span> <span>12 kwh</span></div>
+      <div class="row"><span>Water Heater</span> <span>7 kwh</span></div>
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div class="bottom-nav">
+    <button class="nav-btn">⌂</button>
+    <button class="nav-btn">📊</button>
+    <button class="nav-btn">⚙︎</button>
+  </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
