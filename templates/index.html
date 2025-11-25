@@ -9,7 +9,30 @@
 <body>
 
 <div class="container">
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="profile">
+    <img src="/static/profile.jpg" alt="Profile" class="avatar">
+    <div class="username">tim</div>
+    <div class="handle">@tiimwg</div>
+  </div>
+  <div class="sidebar-options">
+    <div class="option">🌙 Dark mode</div>
+    <div class="option">⚙️ Settings</div>
+    <div class="option">🚪 Sign out</div>
+  </div>
+  <div class="version">Version: 0.67</div>
+</div>
 
+<!-- Hamburger -->
+<button class="hamburger" id="hamburger">
+  <svg viewBox="0 0 24 24" width="32" height="32" stroke="white" stroke-width="2" fill="none"
+       stroke-linecap="round" stroke-linejoin="round">
+    <line x1="3" y1="6" x2="21" y2="6" />
+    <line x1="3" y1="12" x2="21" y2="12" />
+    <line x1="3" y1="18" x2="21" y2="18" />
+  </svg>
+</button>
   <!-- TOP BAR: level + progress -->
   <div class="top-bar">
     <div class="level-progress">
@@ -25,9 +48,25 @@
 
 <div class="gauge">
   <svg viewBox="0 0 200 100" class="gauge-svg">
-    <path d="M10 100 A90 90 0 0 1 190 100" stroke="#2a3442" stroke-width="20" fill="none" />
-    <path id="gaugeFill" d="M10 100 A90 90 0 0 1 190 100" stroke="#69c2e9" stroke-width="20" fill="none" stroke-dasharray="0 283" />
-  </svg>
+  <defs>
+    <!-- Blue → White -->
+<linearGradient id="gaugeBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+  <stop offset="0%" stop-color="#8fd3ff"/>
+  <stop offset="50%" stop-color="#69c2e9"/>
+  <stop offset="100%" stop-color="#ffffff" stop-opacity="1"/>
+</linearGradient>
+    <!-- Light Red → Dark Red -->
+    <linearGradient id="gaugeRed" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffb3b3"/>
+      <stop offset="50%" stop-color="#ff6b6b"/>
+      <stop offset="100%" stop-color="#b30000"/>
+    </linearGradient>
+  </defs>
+
+  <path d="M10 100 A90 90 0 0 1 190 100" stroke="#2a3442" stroke-width="20" fill="none" />
+  <path id="gaugeFill" d="M10 100 A90 90 0 0 1 190 100"
+        stroke="url(#gaugeBlue)" stroke-width="20" fill="none" stroke-dasharray="0 283" />
+</svg>
   <div class="temperature" id="temperature">23°</div>
     <div class="dial-controls">
     <button class="btn small" id="decreaseTemp">-</button>
@@ -80,11 +119,35 @@
   </div>
 
   <!-- BOTTOM NAV -->
-  <div class="bottom-nav">
-    <button class="nav-btn">⌂</button>
-    <button class="nav-btn">📊</button>
-    <button class="nav-btn">⚙︎</button>
-  </div>
+<div class="bottom-nav">
+  <button class="nav-btn side-btn">
+    <!-- Bar chart icon -->
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
+      <line x1="18" y1="20" x2="18" y2="10" />
+      <line x1="12" y1="20" x2="12" y2="4" />
+      <line x1="6" y1="20" x2="6" y2="14" />
+    </svg>
+  </button>
+
+  <button class="nav-btn home-btn">
+    <!-- Home icon -->
+    <svg viewBox="0 0 24 24" fill="none" stroke="#2a3442" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
+      <path d="M3 9L12 2L21 9V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" />
+      <polyline points="9 22 9 12 15 12 15 22" />
+    </svg>
+  </button>
+
+  <button class="nav-btn side-btn">
+    <!-- Settings gear icon -->
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
+      <circle cx="12" cy="12" r="3" />
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.09a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.09a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.09a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+    </svg>
+  </button>
+</div>
 
 </div>
 
