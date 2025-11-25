@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function setTemp(newTemp) {
-    newTemp = Math.max(controlMin, Math.min(controlMax, newTemp));
-    tempEl.textContent = `${newTemp}°`;
-    updateGauge(newTemp);
+    const clamped = Math.max(controlMin, Math.min(controlMax, newTemp));
+    tempEl.textContent = `${clamped}°`;
+    updateGauge(clamped);
   }
 
   decreaseBtn.addEventListener('click', () => {
@@ -32,5 +32,28 @@ document.addEventListener('DOMContentLoaded', () => {
     setTemp(current + 1);
   });
 
-  updateGauge(parseInt(tempEl.textContent));
+  // Initialize gauge
+  setTemp(parseInt(tempEl.textContent));
+
+  // Chart rendering
+ function renderChart(id, data) {
+  const max = Math.max(...data);
+  const min = Math.min(...data);
+  const range = max - min || 1;
+  const chartHeight = 80;
+  const stepX = 200 / (data.length - 1);
+
+  const points = data.map((val, i) => {
+    const y = chartHeight - ((val - min) / range) * chartHeight;
+    return `${i * stepX},${y}`;
+  }).join(' ');
+
+  const chart = document.getElementById(id);
+  if (chart) chart.setAttribute('points', points);
+}
+renderChart('chart7', [2, 4, 3, 5, 6, 4, 3]);
+  renderChart('chart24', [
+    1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2,
+    1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2
+  ]);
 });

@@ -44,14 +44,18 @@
 
   <!-- CHARTS -->
   <div class="charts">
-    <div class="chart-box">
-      <div class="title">Last 7 days</div>
-      <div class="chart-line"></div>
-    </div>
-    <div class="chart-box">
-      <div class="title">Last 24 hours</div>
-      <div class="chart-line"></div>
-    </div>
+<div class="chart-box">
+  <div class="title">Last 7 days</div>
+  <<svg class="chart-svg" viewBox="0 0 200 80" preserveAspectRatio="none">
+  <polyline id="chart7" fill="none" stroke="#69c2e9" stroke-width="2" points="" />
+</svg>
+</div>
+
+<div class="chart-box">
+  <div class="title">Last 24 hours</div>
+  <svg class="chart-svg" viewBox="0 0 200 80" preserveAspectRatio="none">
+  <polyline id="chart24" fill="none" stroke="#69c2e9" stroke-width="2" points="" />
+</svg>
   </div>
 
   <!-- TWO COLUMNS: rankings + appliances -->
