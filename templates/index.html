@@ -139,7 +139,7 @@
 
   <!-- BOTTOM NAV -->
 <div class="bottom-nav">
-  <a href="templates/leaderboard.html">
+  <a href="/leaderboard">
   <button class="nav-btn side-btn">
     <!-- Bar chart icon -->
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -150,6 +150,7 @@
     </svg>
   </button>
 </a>
+<a href="{{ url_for('home') }}">
   <button class="nav-btn home-btn">
     <!-- Home icon -->
     <svg viewBox="0 0 24 24" fill="none" stroke="#2a3442" stroke-width="2"
@@ -158,7 +159,7 @@
       <polyline points="9 22 9 12 15 12 15 22" />
     </svg>
   </button>
-
+</a>
   <button class="nav-btn side-btn">
   <!-- Profile icon -->
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"

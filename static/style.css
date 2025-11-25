@@ -465,3 +465,134 @@ border-top: 1px solid #2a3442;
     grid-template-columns: 1fr;
   }
 }
+
+/* Leaderboard page layout */
+.leaderboard-wrapper {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 24px 16px 120px; /* bottom padding for nav bar */
+}
+
+.section {
+  margin-bottom: 32px;
+}
+
+.section .title {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 8px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.section p,
+.section li {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.section ul {
+  padding-left: 16px;
+}
+
+.leaderboard-list {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.leaderboard-list ol {
+  padding-left: 16px;
+}
+
+.leaderboard-list li {
+  padding: 6px 0;
+  border-bottom: 1px dashed #253040;
+  display: flex;
+  justify-content: space-between;
+  color: var(--text);
+  font-size: 14px;
+}
+.leaderboard-list li.divider-row {
+  border-bottom: none;
+  padding: 0;
+  justify-content: center;
+}
+
+.leaderboard-list li:last-child {
+  border-bottom: none;
+}
+
+/* Back button */
+.back-btn {
+  display: block;
+  margin: 24px auto 0;
+  text-align: center;
+  background: var(--panel);
+  color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.back-btn:hover {
+  background: #1c2230;
+}
+
+.exp-box {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 32px;
+}
+
+.exp-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.exp-line {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 14px;
+  color: var(--text);
+  border-bottom: 1px dashed #253040;
+}
+
+.exp-line:last-child {
+  border-bottom: none;
+}
+
+.exp-line.dimmed {
+  opacity: 0.5;
+}
+
+.exp-line.total {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.label {
+  color: var(--muted);
+}
+
+.value {
+  color: var(--text);
+}
+
+.leaderboard-divider {
+  border: none;
+  border-top: 1px solid #253040;
+  width: 100%;
+  opacity: 0.6;
+  margin: 8px 0;
+}

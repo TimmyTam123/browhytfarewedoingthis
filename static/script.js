@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const sidebar = document.getElementById('sidebar');
 
 
+
   const displayMin = 0;
   const displayMax = 40;
   const controlMin = 10;
@@ -63,21 +64,25 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 200); // wait 200ms before swapping text
 }
 
+if (decreaseBtn && tempEl) {
   decreaseBtn.addEventListener('click', () => {
     const current = parseInt(tempEl.textContent);
     setTemp(current - 1);
   });
+}
 
+if (increaseBtn && tempEl) {
   increaseBtn.addEventListener('click', () => {
     const current = parseInt(tempEl.textContent);
     setTemp(current + 1);
   });
-
-  hamburger.addEventListener('click', () => {
-    sidebar.classList.toggle('open');
-    console.log('Hamburger clicked, sidebar toggled.');
-  });
-  
+}
+if (hamburger && sidebar) {
+    hamburger.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      console.log('Hamburger clicked, sidebar toggled.');
+    });
+  }
   // Power toggle → grayscale entire SVGs + button
   powerBtn.addEventListener('click', () => {
     powerOn = !powerOn;
