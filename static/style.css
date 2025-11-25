@@ -190,8 +190,33 @@ box-sizing: border-box;
   margin-top: 96px; /* was 64px or less — now pushed further */
 }
 
+.lists-wrapper {
+  width: 100%;
+  margin-top: 48px;
+  padding-bottom: 40px;
+}
+
+
+.chart-with-axis {
+  display: flex;
+  align-items: stretch;
+}
+
+.y-axis-labels {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-right: 8px;
+  font-size: 8px;
+  color: var(--muted);
+  width: 40px;
+}
 .lists.two-col {
-  margin-top: 48px; /* adds space below charts */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 .chart-box {
@@ -422,6 +447,8 @@ border-top: 1px solid #2a3442;
   font-size: 28px;
 }
 @media (max-width: 720px) {
-  .charts, .lists.two-col { grid-template-columns: 1fr; }
-  .container { padding-bottom: 96px; }
+  .charts,
+  .lists.two-col {
+    grid-template-columns: 1fr;
+  }
 }

@@ -85,21 +85,40 @@
   <div class="charts">
 <div class="chart-box">
   <div class="title">Last 7 days</div>
+   <div class="chart-with-axis">
+    <div class="y-axis-labels">
+      <span>20 kWh</span>
+      <span>15 kWh</span>
+      <span>10 kWh</span>
+      <span>5 kWh</span>
+      <span>0 kWh</span>
+    </div>
   <svg class="chart-svg" viewBox="0 0 200 80" preserveAspectRatio="none">
     <path id="chart7" fill="none" stroke="#69c2e9" stroke-width="2" d="" />
   <line x1="0" y1="78" x2="200" y2="78" stroke="#69c2e933" stroke-width="1" />
 </svg>
 </div>
+</div>
 
 <div class="chart-box">
   <div class="title">Last 24 hours</div>
+  <div class="chart-with-axis">
+    <div class="y-axis-labels">
+      <span>10 kWh</span>
+      <span>7.5 kWh</span>
+      <span>5 kWh</span>
+      <span>2.5 kWh</span>
+      <span>0 kWh</span>
+    </div>
   <svg class="chart-svg" viewBox="0 0 200 80" preserveAspectRatio="none">
     <path id="chart24" fill="none" stroke="#69c2e9" stroke-width="2" d="" />
   <line x1="0" y1="78" x2="200" y2="78" stroke="#69c2e933" stroke-width="1" />
 </svg>
+</div>
   </div>
-
+</div>
   <!-- TWO COLUMNS: rankings + appliances -->
+   <div class="lists-wrapper">
   <div class="lists two-col">
     <div class="ranking">
       <div class="title">Energy Rankings</div>
@@ -140,13 +159,14 @@
   </button>
 
   <button class="nav-btn side-btn">
-    <!-- Settings gear icon -->
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-         stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
-      <circle cx="12" cy="12" r="3" />
-      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.09a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.09a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.09a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
-    </svg>
-  </button>
+  <!-- Profile icon -->
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
+    <path d="M20 21v-2a4 4 0 0 0-3-3.87" />
+    <path d="M4 21v-2a4 4 0 0 1 3-3.87" />
+    <circle cx="12" cy="7" r="4" />
+  </svg>
+</button>
 </div>
 
 </div>
