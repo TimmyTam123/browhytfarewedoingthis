@@ -29,18 +29,23 @@ const toggleBtn = document.getElementById("toggleTheme");
 
 
   const displayMin = 0;
-  const displayMax = 40;
-  const controlMin = 10;
-  const controlMax = 30;
-  const arcLength = 283;
+const displayMax = 40;
+const controlMin = 10;
+const controlMax = 30;
+const arcLength = 283;
 
-  let powerOn = true;
+let powerOn = true;
 
-
- function updateGauge(temp) {
+function updateGauge(temp) {
   const percent = (temp - displayMin) / (displayMax - displayMin);
   const fillLength = percent * arcLength;
-  gaugeFill.setAttribute('stroke-dasharray', `${fillLength} ${arcLength - fillLength}`);
+
+  // Always keep full dasharray
+  gaugeFill.setAttribute('stroke-dasharray', arcLength);
+
+  // Animate offset instead of dasharray
+  gaugeFill.style.transition = 'stroke-dashoffset 0.6s ease-out, stroke 0.6s ease';
+  gaugeFill.style.strokeDashoffset = arcLength - fillLength;
 
   // Color logic relative to 20°
   if (temp > 23) {
@@ -51,6 +56,7 @@ const toggleBtn = document.getElementById("toggleTheme");
     gaugeFill.setAttribute('stroke', '#69c2e9');
   }
 }
+
   function setTemp(newTemp) {
   const clamped = Math.max(controlMin, Math.min(controlMax, newTemp));
 

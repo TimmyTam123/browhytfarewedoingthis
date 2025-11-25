@@ -12,16 +12,16 @@ body {
 }
 
 :root {
-  --bg: #d5e1f1;       /* background */
-  --panel: #c7d3e7;    /* lighter panel base */
-  --panel-2: #bcc8db;  /* secondary panels */
+  --bg: #eeeff1;       /* background */
+  --panel: #d3dbe9;    /* lighter panel base */
+  --panel-2: #d3dbe9;  /* secondary panels */
   --panel-3: #c7d3e7;  /* exp-bar background */
   --panel-4: #b7c2d8;  /* level background */
   --panel-5: #c7d3e7;  /* buttons/nav backgrounds */
   --text: #081100;     /* primary text */
   --muted: #5b6b82;    /* muted text */
-  --accent: #65b8dc;   /* ONLY for graphs, gauge arc, exp bar */
-  --accent-2: #9ccfe8; /* softer highlight */
+  --accent: #51bfef;   /* ONLY for graphs, gauge arc, exp bar */
+  --accent-2: #00273b; /* softer highlight */
   --good: #65b8dc;
   --bad: #d13438;
   --border: #a9b4cb;   /* lighter border */
@@ -32,6 +32,16 @@ body {
   --shadow-2: rgba(0,0,0,0.15);
   --shadow-3: rgba(0,0,0,0.08);
   --shadow-4: rgba(0,0,0,0.1);
+  --hover: #b7c2d8
+}
+
+:root[data-theme="light"] .btn:hover,
+:root[data-theme="light"] .side-btn:hover,
+:root[data-theme="light"] .home-btn:hover,
+:root[data-theme="light"] .nav-btn:hover {
+  background: var(--hover);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 :root[data-theme="dark"] {
@@ -41,8 +51,8 @@ body {
   --panel-3: #1a1f2a;
   --panel-4: #2a3442;
   --panel-5: #1a1f2a;
-  --text: #eeffdb;
-  --muted: #b7c9b7;
+  --text: #f8fff0;
+  --muted: #d3d8d3;
   --accent: #69c2e9;   /* ONLY for graphs, gauge arc, exp bar */
   --accent-2: #a0d6e7; /* softer highlight */
   --good: #69c2e9;
@@ -118,7 +128,7 @@ html, body {
 }
 
 #gaugeFill {
-  transition: stroke 0.6s ease, stroke-dasharray 0.6s ease-out;
+  transition: stroke-dashoffset 0.6s ease-out, stroke 0.6s ease;
 }
 /* Center gauge */
 .center {
@@ -156,6 +166,20 @@ html, body {
   color: var(--text);
   z-index: 1;
 }
+
+.hamburger {
+  color: var(--border); /* adapts to theme */
+}
+
+/* Optional hover */
+:root[data-theme="dark"] .hamburger {
+  color: #eeffdb; /* light greenish-white from your palette */
+}
+
+:root[data-theme="light"] .hamburger {
+  color: #5b6b82; /* dark gray-blue for contrast on light background */
+}
+
 .dial-controls {
   display: flex;
   justify-content: center;
@@ -197,14 +221,26 @@ html, body {
   aspect-ratio: 1 / 1; /* ensures perfect circle */
   padding: 0;
   border-radius: 50%;
-  border: 2px solid var(--accent);
+  border: 2px solid var(--border-2);
   background: var(--panel-5);
-  color: var(--accent);
+  color: var(--text);
   box-shadow: 0 0 20px var(--shadow-1);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
+}
+
+.grayscale {
+  filter: grayscale(100%) brightness(1) contrast(1);
+  color: var(--muted-gray);
+}
+
+:root {
+  --muted-gray: #808080; /* neutral gray for light mode */
+}
+:root[data-theme="dark"] {
+  --muted-gray: #9aa7b6; /* your existing muted gray */
 }
 
 .dial-controls .btn.large svg {
@@ -213,7 +249,12 @@ html, body {
   display: block;
 }
 /* Optional: hover feedback */
-.dial-controls .btn:hover { background: #202636; } /* ← still hard-coded, needs a hover var if desired */
+:root[data-theme="dark"] .btn:hover,
+:root[data-theme="dark"] .side-btn:hover,
+:root[data-theme="dark"] .home-btn:hover,
+:root[data-theme="dark"] .nav-btn:hover {
+  background: #202636; /* or define --hover-dark if you want consistency */
+}
 .power-btn {
   color: var(--accent);
 }
