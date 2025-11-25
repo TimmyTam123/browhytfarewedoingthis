@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="signup-page">
+  <div class="signup-container">
+    <h1 class="signup-title">uNiTAL</h1>
+    <form class="signup-form" method="POST" action="/signup.html">
+      <input type="text" name="username" class="signup-input" placeholder="Username" required>
+      <input type="password" name="password" class="signup-input" placeholder="Password" required>
+      <button type="submit" class="signup-button">Sign Up</button>
+    </form>
+    <p class="signup-footer">
+      Already have an account? <a href="login.html" class="signup-link">Log in</a>
+    </p>
+  </div>
+</div>
+{% endblock %}
