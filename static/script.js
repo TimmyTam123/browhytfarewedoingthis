@@ -7,7 +7,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const chartSvgs = document.querySelectorAll('.chart-svg'); // whole SVGs
   const hamburger = document.getElementById('hamburger');
   const sidebar = document.getElementById('sidebar');
+const toggleBtn = document.getElementById("toggleTheme");
+  const root = document.documentElement;
 
+  // Load saved theme from localStorage, or default to light
+  const savedTheme = localStorage.getItem("theme") || "light";
+  root.setAttribute("data-theme", savedTheme);
+  toggleBtn.textContent = savedTheme === "dark" ? "☀️ Light mode" : "🌙 Dark mode";
+
+  toggleBtn.addEventListener("click", () => {
+    const currentTheme = root.getAttribute("data-theme");
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", newTheme);
+
+    // Save to localStorage
+    localStorage.setItem("theme", newTheme);
+
+    // Update button text/icon
+    toggleBtn.textContent = newTheme === "dark" ? "☀️ Light mode" : "🌙 Dark mode";
+  });
 
 
   const displayMin = 0;
@@ -17,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const arcLength = 283;
 
   let powerOn = true;
+
 
  function updateGauge(temp) {
   const percent = (temp - displayMin) / (displayMax - displayMin);
