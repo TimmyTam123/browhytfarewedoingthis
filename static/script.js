@@ -112,6 +112,12 @@ document.addEventListener('DOMContentLoaded', () => {
     setTemp(current + 1);
   });
 
+  // Initialize gauge on page load
+  if (tempEl && gaugeFill) {
+    const initialTemp = parseInt(tempEl.textContent);
+    updateGauge(initialTemp);
+  }
+
   hamburger?.addEventListener('click', () => {
     // Add 'ready' class on first click to enable transitions
     if (!sidebar?.classList.contains('ready')) {
@@ -181,8 +187,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Weekly data has 7 days (Mon-Sun), each representing total kWh used per day
   const weeklyData = {
-    'Last Week^3': [32.4, 28.7, 35.6, 29.3, 26.8, 38.9, 41.2],  // Mon-Sun
-    'Last Week^2': [24.5, 31.2, 27.9, 33.8, 29.5, 36.7, 34.1],  // Mon-Sun
+    '3 Weeks Ago': [32.4, 28.7, 35.6, 29.3, 26.8, 38.9, 41.2],  // Mon-Sun
+    '2 Weeks Ago': [24.5, 31.2, 27.9, 33.8, 29.5, 36.7, 34.1],  // Mon-Sun
     'Last Week': [29.8, 25.3, 34.2, 31.5, 27.1, 39.4, 37.6],  // Mon-Sun
     'Current Week': [26.7, 33.9, 28.4, 24.6, 31.8, 35.3, 40.8]   // Mon-Sun
   };
