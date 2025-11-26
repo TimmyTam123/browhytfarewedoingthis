@@ -2,7 +2,7 @@
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
-<div class="auth-container" style="display:flex; justify-content:center; align-items:center; height:80vh;">
+<div class="auth-container" style="display:flex; justify-content:center; align-items:center; height:80vh; background-image: url('/static/background.png'); background-repeat: no-repeat; background-position: center center; background-size: cover;">
     <div class="auth-box" style="background: var(--panel-2); padding:32px 24px; border-radius:12px; width:100%; max-width:400px; box-shadow:0 4px 12px var(--shadow-3);">
         <h2 style="text-align:center; color: var(--text); margin-bottom: 24px;">Sign Up</h2>
 
@@ -10,7 +10,7 @@
         {% with messages = get_flashed_messages(with_categories=true) %}
           {% if messages %}
             {% for category, message in messages %}
-              <div style="color: {% if category=='danger' %}var(--bad){% elif category=='warning' %}var(--accent-2){% else %}var(--good){% endif %}; margin-bottom: 12px; text-align:center;">
+              <div class="flash {{ category }}" style="margin-bottom: 12px; text-align:center;">
                 {{ message }}
               </div>
             {% endfor %}
