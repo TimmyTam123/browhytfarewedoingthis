@@ -8,6 +8,11 @@
 </head>
 <body>
 
+<!-- Logo in top-right corner -->
+<div style="position: fixed; top: 16px; right: 16px; z-index: 300;">
+    <img src="/static/logo.png" alt="Logo" style="width:120px; height:auto;">
+</div>
+
 <div class="container">
 <!-- Sidebar -->
 <div class="sidebar" id="sidebar">
@@ -16,11 +21,11 @@
     <div class="username">tim</div>
     <div class="handle">@tiimwg</div>
   </div>
-  <div class="sidebar-options">
-    <div class="option">🌙 Dark mode</div>
+<div class="sidebar-options">
+    <div class="option" id="toggleTheme">🌙 Dark mode</div>
     <div class="option">⚙️ Settings</div>
-    <div class="option">🚪 Sign out</div>
-  </div>
+    <a href="{{ url_for('logout') }}" class="option">🚪 Sign out</a>
+</div>
   <div class="version">Version: 0.67</div>
 </div>
 
@@ -33,18 +38,22 @@
     <line x1="3" y1="18" x2="21" y2="18" />
   </svg>
 </button>
-  <!-- TOP BAR: level + progress -->
-  <div class="top-bar">
-    <div class="level-progress">
-      <span class="exp-text">15 exp until lv up</span>
-      <div class="exp-bar"><div class="exp-fill" style="width: 65%;"></div></div>
-      <span class="level">Lv 16</span>
-    </div>
-  </div>
+ <!-- TOP BAR: level + progress -->
+ <div class="top-bar">
+   <div class="level-progress">
+     <span class="exp-text">15 exp until lv up</span>
+     <div class="exp-bar"><div class="exp-fill" style="width: 65%;"></div></div>
+     <span class="level">Lv 16</span>
+   </div>
+ </div>
 
   <!-- CENTER: room + circular gauge -->
   <div class="center">
-    <div class="room">Living Room</div>
+   <div class="center room-selector">
+  <button class="btn small room-arrow" id="prevRoom">&lt;</button>
+  <div class="room" id="roomName">Living Room</div>
+  <button class="btn small room-arrow" id="nextRoom">&gt;</button>
+</div>
 
 <div class="gauge">
   <svg viewBox="0 0 200 100" class="gauge-svg">
@@ -79,26 +88,29 @@
     <button class="btn small" id="increaseTemp">+</button>
     </div>
 </div>
-  </div>
+ </div>
+
 
   <!-- CHARTS -->
-  <div class="charts">
+<div class="charts">
+
 <div class="chart-box">
-  <div class="title">Last 7 days</div>
-   <div class="chart-with-axis">
-    <div class="y-axis-labels">
-      <span>20 kWh</span>
-      <span>15 kWh</span>
-      <span>10 kWh</span>
-      <span>5 kWh</span>
-      <span>0 kWh</span>
+  <div class="title">Last 7 Days</div>
+    <div class="chart-with-axis">
+      <div class="y-axis-labels">
+        <span>50 kWh</span>
+        <span>45 kWh</span>
+        <span>40 kWh</span>
+        <span>35 kWh</span>
+        <span>30 kWh</span>
+      </div>
+      <svg class="chart-svg" viewBox="0 0 200 80" preserveAspectRatio="none">
+        <path id="chart7" fill="none" stroke="#69c2e9" stroke-width="2" />
+        <line x1="0" y1="78" x2="200" y2="78" stroke="#ccc" stroke-width="1" />
+      </svg>
     </div>
-  <svg class="chart-svg" viewBox="0 0 200 80" preserveAspectRatio="none">
-    <path id="chart7" fill="none" stroke="#69c2e9" stroke-width="2" d="" />
-  <line x1="0" y1="78" x2="200" y2="78" stroke="#69c2e933" stroke-width="1" />
-</svg>
-</div>
-</div>
+  </div>
+
 
 <div class="chart-box">
   <div class="title">Last 24 hours</div>
@@ -139,6 +151,7 @@
 
   <!-- BOTTOM NAV -->
 <div class="bottom-nav">
+  <a href="/leaderboard">
   <button class="nav-btn side-btn">
     <!-- Bar chart icon -->
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -148,7 +161,8 @@
       <line x1="6" y1="20" x2="6" y2="14" />
     </svg>
   </button>
-
+</a>
+<a href="{{ url_for('home') }}">
   <button class="nav-btn home-btn">
     <!-- Home icon -->
     <svg viewBox="0 0 24 24" fill="none" stroke="#2a3442" stroke-width="2"
@@ -157,20 +171,25 @@
       <polyline points="9 22 9 12 15 12 15 22" />
     </svg>
   </button>
-
+</a> 
+<a href="/profile">
   <button class="nav-btn side-btn">
   <!-- Profile icon -->
+  
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
        stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
     <path d="M20 21v-2a4 4 0 0 0-3-3.87" />
     <path d="M4 21v-2a4 4 0 0 1 3-3.87" />
     <circle cx="12" cy="7" r="4" />
   </svg>
+
 </button>
+</a>
 </div>
 
 </div>
 
-<script src="static/script.js"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
+
