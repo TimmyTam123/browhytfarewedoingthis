@@ -59,7 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateGauge(temp) {
     const percent = (temp - displayMin) / (displayMax - displayMin);
     const fillLength = percent * arcLength;
-    gaugeFill?.setAttribute('stroke-dasharray', `${fillLength} ${arcLength - fillLength}`);
+    
+    // Smooth transition for gauge fill
+    if (gaugeFill) {
+      gaugeFill.style.transition = 'stroke-dasharray 0.6s ease-out, stroke 0.6s ease';
+      gaugeFill.setAttribute('stroke-dasharray', `${fillLength} ${arcLength - fillLength}`);
+    }
 
     if (temp > 23) {
       gaugeFill?.setAttribute('stroke', 'url(#gaugeRed)');
@@ -74,10 +79,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const clamped = Math.max(controlMin, Math.min(controlMax, newTemp));
     if (!tempEl) return;
 
+    // Fade out temperature text
     tempEl.style.opacity = 0;
+    
     setTimeout(() => {
       tempEl.textContent = `${clamped}°`;
       tempEl.getBoundingClientRect();
+      // Fade in temperature text
       tempEl.style.opacity = 1;
       updateGauge(clamped);
 
@@ -86,11 +94,12 @@ document.addEventListener('DOMContentLoaded', () => {
       chartSvgs.forEach(svg => {
         const path = svg.querySelector('path[id^="chart"]');
         if (!path) return;
+        path.style.transition = 'stroke 0.6s ease';
         if (useRed) path.setAttribute('stroke', 'url(#chartRed)');
         else if (useBlue) path.setAttribute('stroke', 'url(#chartBlue)');
         else path.setAttribute('stroke', '#69c2e9');
       });
-    }, 200);
+    }, 300);
   }
 
   decreaseBtn?.addEventListener('click', () => {
@@ -104,6 +113,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   hamburger?.addEventListener('click', () => {
+    // Add 'ready' class on first click to enable transitions
+    if (!sidebar?.classList.contains('ready')) {
+      sidebar?.classList.add('ready');
+    }
     sidebar?.classList.toggle('open');
   });
 
@@ -168,14 +181,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Weekly data has 7 days (Mon-Sun), each representing total kWh used per day
   const weeklyData = {
-    'Week 1': [28.5, 26.3, 32.1, 24.8, 30.9, 35.2, 36.7],  // Mon-Sun
-    'Week 2': [27.8, 25.6, 31.4, 23.9, 29.8, 34.5, 35.9],  // Mon-Sun
-    'Week 3': [26.9, 24.8, 30.2, 23.1, 28.7, 33.6, 34.8],  // Mon-Sun
-    'Week 4': [25.7, 23.5, 29.1, 22.3, 27.5, 32.4, 33.6]   // Mon-Sun
+    'Last Week^3': [32.4, 28.7, 35.6, 29.3, 26.8, 38.9, 41.2],  // Mon-Sun
+    'Last Week^2': [24.5, 31.2, 27.9, 33.8, 29.5, 36.7, 34.1],  // Mon-Sun
+    'Last Week': [29.8, 25.3, 34.2, 31.5, 27.1, 39.4, 37.6],  // Mon-Sun
+    'Current Week': [26.7, 33.9, 28.4, 24.6, 31.8, 35.3, 40.8]   // Mon-Sun
   };
 
-  // Profile chart rendering function
-  function renderProfileChart(id, data) {
+  // Profile chart rendering function with axis labels
+  function renderProfileChart(id, data, mode = 'Daily') {
     const chart = document.getElementById(id);
     if (!chart || data.length < 2) {
       console.log('Chart element not found or insufficient data');
@@ -228,7 +241,78 @@ document.addEventListener('DOMContentLoaded', () => {
       chart.style.strokeDashoffset = '0';
     }, 10);
     
+    // Update axis labels
+    updateAxisLabels(mode, max, min);
+    
     console.log('Chart rendered:', d);
+  }
+
+  // Function to update axis labels based on mode
+  function updateAxisLabels(mode, maxValue, minValue) {
+    // Get or create Y-axis container
+    let yAxisContainer = document.getElementById('profileYAxis');
+    if (!yAxisContainer) {
+      const dataSection = document.getElementById('profileData');
+      const chartSvg = dataSection?.querySelector('.chart-svg');
+      if (!chartSvg) return;
+      
+      // Create wrapper for chart with axis
+      const wrapper = document.createElement('div');
+      wrapper.className = 'chart-with-axis';
+      wrapper.style.cssText = 'display: flex; align-items: center; height: 100px;';
+      
+      // Create Y-axis labels
+      yAxisContainer = document.createElement('div');
+      yAxisContainer.id = 'profileYAxis';
+      yAxisContainer.className = 'y-axis-labels';
+      
+      // Wrap the SVG
+      chartSvg.parentNode.insertBefore(wrapper, chartSvg);
+      wrapper.appendChild(yAxisContainer);
+      wrapper.appendChild(chartSvg);
+    }
+    
+    // Generate Y-axis labels (4 evenly spaced values)
+    const step = (maxValue - minValue) / 3;
+    yAxisContainer.innerHTML = `
+      <span>${maxValue.toFixed(1)}</span>
+      <span>${(maxValue - step).toFixed(1)}</span>
+      <span>${(maxValue - 2 * step).toFixed(1)}</span>
+      <span>${minValue.toFixed(1)}</span>
+    `;
+    
+    // Get or create X-axis container
+    let xAxisContainer = document.getElementById('profileXAxis');
+    if (!xAxisContainer) {
+      const dataSection = document.getElementById('profileData');
+      xAxisContainer = document.createElement('div');
+      xAxisContainer.id = 'profileXAxis';
+      xAxisContainer.className = 'x-axis-labels';
+      dataSection?.appendChild(xAxisContainer);
+    }
+    
+    // Generate X-axis labels based on mode
+    if (mode === 'Daily') {
+      // Show hours: 0, 6, 12, 18, 23
+      xAxisContainer.innerHTML = `
+        <span>0h</span>
+        <span>6h</span>
+        <span>12h</span>
+        <span>18h</span>
+        <span>23h</span>
+      `;
+    } else {
+      // Show days: Mon to Sun
+      xAxisContainer.innerHTML = `
+        <span>Mon</span>
+        <span>Tue</span>
+        <span>Wed</span>
+        <span>Thu</span>
+        <span>Fri</span>
+        <span>Sat</span>
+        <span>Sun</span>
+      `;
+    }
   }
 
   // Update date buttons based on mode (Daily or Weekly)
@@ -257,8 +341,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add active class to clicked button
         btn.classList.add('active');
         
-        // Render the chart with selected data
-        renderProfileChart('profileChart', values);
+        // Render the chart with selected data and current mode
+        renderProfileChart('profileChart', values, mode);
       });
       
       dateButtonsContainer.appendChild(btn);
@@ -266,7 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Auto-render first dataset
     const firstKey = Object.keys(dataSet)[0];
-    renderProfileChart('profileChart', dataSet[firstKey]);
+    renderProfileChart('profileChart', dataSet[firstKey], mode);
   }
 
   // Toggle between Daily and Weekly
