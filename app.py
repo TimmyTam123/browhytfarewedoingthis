@@ -14,10 +14,6 @@ app.secret_key = os.urandom(24)  # Needed for sessions and flash messages
 def leaderboard():
     return render_template("leaderboard.html")
 
-@app.route("/profile")
-def profile():
-   return render_template("profile.html")
-
 # ---------------------------
 # SIGNUP
 # ---------------------------
@@ -101,5 +97,3 @@ def messages():
 # ---------------------------
 if __name__ == "__main__":
     app.run(debug=True)
-
-
