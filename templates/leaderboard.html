@@ -118,8 +118,8 @@
  <!-- Bottom nav bar (same as index.html) -->
    <!-- BOTTOM NAV -->
 <div class="bottom-nav">
-  <a href="/leaderboard">
-  <button class="nav-btn side-btn">
+  <a href="/leaderboard" class="nav-btn side-btn">
+
     <!-- Bar chart icon -->
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
          stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
@@ -127,20 +127,18 @@
       <line x1="12" y1="20" x2="12" y2="4" />
       <line x1="6" y1="20" x2="6" y2="14" />
     </svg>
-  </button>
 </a>
-<a href="{{ url_for('home') }}">
-  <button class="nav-btn home-btn">
+<a href="{{ url_for('home') }}" class="nav-btn home-btn">
+
     <!-- Home icon -->
     <svg viewBox="0 0 24 24" fill="none" stroke="#2a3442" stroke-width="2"
          stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
       <path d="M3 9L12 2L21 9V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" />
       <polyline points="9 22 9 12 15 12 15 22" />
     </svg>
-  </button>
 </a> 
-<a href="/profile">
-  <button class="nav-btn side-btn">
+<a href="/profile" class="nav-btn side-btn">
+
   <!-- Profile icon -->
   
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -150,7 +148,7 @@
     <circle cx="12" cy="7" r="4" />
   </svg>
 
-</button>
+
 </a>
 </div>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
