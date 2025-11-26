@@ -8,6 +8,10 @@
 </head>
 <body>
 
+<!-- Logo in top-right corner -->
+<div style="position: fixed; top: 16px; right: 16px; z-index: 300;">
+    <img src="/static/logo.png" alt="Logo" style="width:120px; height:auto;">
+</div>
 
 <div class="container">
 <!-- Sidebar -->
@@ -24,7 +28,6 @@
 </div>
  <div class="version">Version: 0.67</div>
 </div>
-
 
 <!-- Hamburger -->
 <button class="hamburger" id="hamburger">
@@ -44,11 +47,9 @@
    </div>
  </div>
 
-
  <!-- CENTER: room + circular gauge -->
  <div class="center">
    <div class="room">Living Room</div>
-
 
 <div class="gauge">
  <svg viewBox="0 0 200 100" class="gauge-svg">
@@ -85,7 +86,6 @@
 </div>
  </div>
 
-
  <!-- CHARTS -->
  <div class="charts">
 <div class="chart-box">
@@ -104,7 +104,6 @@
 </svg>
 </div>
 </div>
-
 
 <div class="chart-box">
  <div class="title">Last 24 hours</div>
@@ -135,7 +134,6 @@
      <div class="row"><span>182. John</span> <span class="arrow same">= 1694 exp</span></div>
    </div>
 
-
    <div class="most-energy">
      <div class="title">Most Energy Appliances</div>
      <div class="row"><span>Fridge</span> <span>13 kwh</span></div>
@@ -143,7 +141,6 @@
      <div class="row"><span>Water Heater</span> <span>7 kwh</span></div>
    </div>
  </div>
-
 
  <!-- BOTTOM NAV -->
 <div class="bottom-nav">
@@ -181,11 +178,8 @@
 </a>
 </div>
 
-
 </div>
-
 
 <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
-
