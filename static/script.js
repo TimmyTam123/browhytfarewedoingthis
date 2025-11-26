@@ -83,12 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setTemp(current + 1);
   });
 
-if (sidebar) {
-    requestAnimationFrame(() => {
-      sidebar.classList.add('ready');
-    });
-  }
-
   hamburger?.addEventListener('click', () => {
     sidebar?.classList.toggle('open');
   });
@@ -216,6 +210,7 @@ function renderProfileChart(id, data) {
   const firstKey = Object.keys(dataSet)[0];
   renderProfileChart('profileChart', dataSet[firstKey]);
 }
+
 
   toggleBtns.forEach(btn => {
     btn.addEventListener('click', () => {

@@ -373,20 +373,6 @@ min-width: 280px;
 max-width: 48%;
 }
 
-.mini-btn {
-  margin: 4px;
-  padding: 6px 10px;
-  font-size: 12px;
-  border: none;
-  border-radius: 6px;
-  background: var(--accent);
-  color: white;
-  cursor: pointer;
-}
-.mini-btn:hover {
-  background: var(--accent-hover);
-}
-
 .chart-box .title {
  color: var(--muted);
  font-size: 14px;
