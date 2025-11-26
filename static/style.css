@@ -1133,3 +1133,99 @@ html, body {
  position: relative;
 }
 
+/* ================================================
+   AUTH PAGE (Login + Signup)
+   ================================================ */
+
+/* Background image */
+.bg-image {
+    position: fixed;
+    inset: 0;
+    background-image: url('background.png'); /* Adjust if in subfolder */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+/* Wrapper for centering box */
+.auth-wrapper {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+/* Main auth box */
+.auth-box {
+    background: var(--panel-2);
+    padding: 32px 24px;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 4px 12px var(--shadow-3);
+}
+
+.auth-box h2 {
+    text-align: center;
+    color: var(--text);
+    margin-bottom: 24px;
+}
+
+/* Inputs */
+.auth-box input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-2);
+    background: var(--panel-5);
+    color: var(--text);
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+/* Button */
+.auth-box button {
+    width: 100%;
+    padding: 12px;
+    background: var(--accent);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.25s ease;
+}
+
+.auth-box button:hover {
+    background: var(--accent-2);
+}
+
+/* Flash messages */
+.flash {
+    margin-bottom: 12px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.flash.danger { color: var(--bad); }
+.flash.warning { color: var(--accent-2); }
+.flash.success { color: var(--good); }
+
+/* Signup/login note under button */
+.auth-note {
+    text-align: center;
+    margin-top: 12px;
+    color: var(--muted);
+}
+
+.auth-note a {
+    color: var(--accent-2);
+    text-decoration: none;
+}
+
+.auth-note a:hover {
+    text-decoration: underline;
+}
