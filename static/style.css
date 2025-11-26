@@ -1018,13 +1018,13 @@ html, body {
 
 /* Auth page background */
 .bg-image {
-  position: fixed;
-  inset: 0;
-  background-image: url('background.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 0;
+    position: fixed;
+    inset: 0;
+    background-image: url('background.jpg'); /* Adjust if in subfolder */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
 }
 
 /* Auth wrapper */
@@ -1039,29 +1039,29 @@ html, body {
 
 /* Auth box */
 .auth-box {
-  background: var(--panel-2);
-  padding: 32px 24px;
-  border-radius: 12px;
-  max-width: 400px;
-  width: 100%;
-  box-shadow: 0 4px 12px var(--shadow-3);
+    background: var(--panel-2);
+    padding: 32px 24px;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 4px 12px var(--shadow-3);
 }
 
 .auth-box h2 {
-  text-align: center;
-  color: var(--text);
-  margin-bottom: 24px;
+    text-align: center;
+    color: var(--text);
+    margin-bottom: 24px;
 }
 
 .auth-box input {
-  width: 100%;
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: 1px solid var(--border-2);
-  background: var(--panel-5);
-  color: var(--text);
-  margin-bottom: 12px;
-  font-size: 14px;
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-2);
+    background: var(--panel-5);
+    color: var(--text);
+    margin-bottom: 12px;
+    font-size: 14px;
 }
 
 .auth-box button {
@@ -1101,14 +1101,14 @@ html, body {
 
 /* Auth note */
 .auth-note {
-  text-align: center;
-  margin-top: 12px;
-  color: var(--muted);
+    text-align: center;
+    margin-top: 12px;
+    color: var(--muted);
 }
 
 .auth-note a {
-  color: var(--accent-2);
-  text-decoration: none;
+    color: var(--accent-2);
+    text-decoration: none;
 }
 
 .auth-note a:hover {
