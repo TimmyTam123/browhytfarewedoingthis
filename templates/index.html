@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Energic Dashboard</title>
-  <link rel="stylesheet" href="static/style.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 <body>
 
@@ -13,7 +14,7 @@
 <!-- Sidebar -->
 <div class="sidebar" id="sidebar">
   <div class="profile">
-    <img src="/static/profile.jpg" alt="Profile" class="avatar">
+    <img src="{{ url_for('static', filename='profile.jpg') }}" alt="Profile" class="avatar">
     <div class="username">tim</div>
     <div class="handle">@tiimwg</div>
   </div>
@@ -26,7 +27,7 @@
   
   <!-- Logo and version at bottom -->
   <div class="sidebar-bottom">
-    <img src="/static/logo.png" alt="Logo" class="sidebar-logo">
+<img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="sidebar-logo">
     <div class="version">Version: 0.67</div>
   </div>
 </div>

@@ -12,9 +12,9 @@
 
 <div class="container">
 <!-- Sidebar -->
-<div class="sidebar" id="sidebar">
+<<div class="sidebar" id="sidebar">
   <div class="profile">
-    <img src="/static/profile.jpg" alt="Profile" class="avatar">
+    <img src="{{ url_for('static', filename='profile.jpg') }}" alt="Profile" class="avatar">
     <div class="username">tim</div>
     <div class="handle">@tiimwg</div>
   </div>
@@ -27,7 +27,7 @@
   
   <!-- Logo and version at bottom -->
   <div class="sidebar-bottom">
-    <img src="/static/logo.png" alt="Logo" class="sidebar-logo">
+<img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="sidebar-logo">
     <div class="version">Version: 0.67</div>
   </div>
 </div>
@@ -120,7 +120,7 @@
 
 
 <div class="bottom-nav">
-  <a href="/leaderboard" class="nav-btn side-btn">
+<a href="{{ url_for('leaderboard') }}" class="nav-btn side-btn">
 
     <!-- Bar chart icon -->
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -139,7 +139,7 @@
       <polyline points="9 22 9 12 15 12 15 22" />
     </svg>
 </a> 
-<a href="/profile" class="nav-btn side-btn">
+<a href="{{ url_for('profile') }}" class="nav-btn side-btn">
 
   <!-- Profile icon -->
   
@@ -153,6 +153,7 @@
 
 </a>
 </div>
+
 </div>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
