@@ -1235,7 +1235,7 @@ html, body {
 .bg-image {
     position: fixed;
     inset: 0;
-    background-image: url('background.png'); /* Adjust if in subfolder */
+    background-image: url('background.jpg'); /* Adjust if in subfolder */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1254,17 +1254,18 @@ html, body {
 
 /* Main auth box */
 .auth-box {
-    background: var(--panel-2);
+    background: #1d3d75;
     padding: 32px 24px;
     border-radius: 12px;
     max-width: 400px;
     width: 100%;
     box-shadow: 0 4px 12px var(--shadow-3);
+    color: #5b6b82;
 }
 
 .auth-box h2 {
     text-align: center;
-    color: var(--text);
+    color: #ffffff;
     margin-bottom: 24px;
 }
 
@@ -1274,7 +1275,7 @@ html, body {
     padding: 10px 12px;
     border-radius: 8px;
     border: 1px solid var(--border-2);
-    background: var(--panel-5);
+    background: #ffffff;
     color: var(--text);
     margin-bottom: 12px;
     font-size: 14px;
@@ -1312,11 +1313,11 @@ html, body {
 .auth-note {
     text-align: center;
     margin-top: 12px;
-    color: var(--muted);
+    color: #ffffff;
 }
 
 .auth-note a {
-    color: var(--accent-2);
+    color: #6cb5da;
     text-decoration: none;
 }
 
