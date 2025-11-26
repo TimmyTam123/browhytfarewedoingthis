@@ -1,19 +1,34 @@
-# Your existing Flask app code here
 from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask_session import Session
+import redis
 import os
+from datetime import timedelta
 
+# --- Flask App ---
 app = Flask(__name__)
 
-# IMPORTANT: Session configuration for production
-app.secret_key = os.environ.get('SECRET_KEY', 'your-secret-key-here-change-this-to-something-random')
+# Secret key
+app.secret_key = os.environ.get('SECRET_KEY', 'replace-with-a-random-secret')
 
-# Critical session settings for Vercel/production
-app.config['SESSION_COOKIE_SECURE'] = True  # Only send cookie over HTTPS
-app.config['SESSION_COOKIE_HTTPONLY'] = True  # Prevent JavaScript access
-app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'  # Allow cookies across same-site navigation
-app.config['PERMANENT_SESSION_LIFETIME'] = 1800  # Session lasts 30 minutes
+# --- Flask-Session Configuration ---
+app.config['SESSION_TYPE'] = 'redis'              # Use Redis backend
+app.config['SESSION_PERMANENT'] = True            # Make sessions permanent
+app.config['SESSION_USE_SIGNER'] = True           # Sign session cookies for security
+app.config['SESSION_KEY_PREFIX'] = 'flask_session:'
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=30)
+app.config['SESSION_COOKIE_SECURE'] = True        # Only send cookie over HTTPS
+app.config['SESSION_COOKIE_HTTPONLY'] = True      # Prevent JS access
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'     # Normal navigation
+app.config['SESSION_COOKIE_PATH'] = '/'           # Cookie path
 
-# Your routes here
+# Redis connection (managed Redis on Vercel)
+redis_url = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
+app.config['SESSION_REDIS'] = redis.from_url(redis_url)
+
+# Initialize server-side session
+Session(app)
+
+# --- Routes ---
 @app.route('/')
 def index():
     return redirect(url_for('login'))
@@ -24,10 +39,10 @@ def login():
         username = request.form.get('username')
         password = request.form.get('password')
         
-        # Your authentication logic here
-        if username == 'tim' and password == 'password123':  # Replace with real auth
+        # Authentication logic (replace with real auth)
+        if username == 'tim' and password == 'password123':
             session['user'] = username
-            session.permanent = True  # Make session persistent
+            session.permanent = True
             return redirect(url_for('home'))
         else:
             flash('Invalid username or password', 'danger')
@@ -37,7 +52,7 @@ def login():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        # Your signup logic
+        # Signup logic here
         flash('Account created successfully!', 'success')
         return redirect(url_for('login'))
     
@@ -66,7 +81,6 @@ def logout():
     session.pop('user', None)
     return redirect(url_for('login'))
 
-# IMPORTANT: This is required for Vercel
-# Do NOT use app.run() for production
+# --- Only for local testing ---
 if __name__ == '__main__':
-    app.run(debug=True)  # Only for local development
+    app.run(debug=True)
