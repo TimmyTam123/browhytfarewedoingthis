@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Weekly data has 7 days (Mon-Sun), each representing total kWh used per day
   const weeklyData = {
-    '3 Weeks Ago': [32.4, 28.7, 35.6, 29.3, 26.8, 38.9, 41.2],  // Mon-Sun
+    '3 Week Ago': [32.4, 28.7, 35.6, 29.3, 26.8, 38.9, 41.2],  // Mon-Sun
     '2 Weeks Ago': [24.5, 31.2, 27.9, 33.8, 29.5, 36.7, 34.1],  // Mon-Sun
     'Last Week': [29.8, 25.3, 34.2, 31.5, 27.1, 39.4, 37.6],  // Mon-Sun
     'Current Week': [26.7, 33.9, 28.4, 24.6, 31.8, 35.3, 40.8]   // Mon-Sun
@@ -370,4 +370,65 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial render (Daily mode by default)
   updateDateButtons('Daily');
+
+  // Render appliance mini charts
+  // Add this updated function to your JavaScript file (replace the existing renderMiniChart function)
+
+// Render appliance mini charts with Y-axis
+function renderMiniChart(id, data, yAxisId) {
+  const chart = document.getElementById(id);
+  const yAxis = document.getElementById(yAxisId);
+  
+  if (!chart || data.length < 2) return;
+
+  const chartHeight = 30;
+  const chartWidth = 100;
+  const max = Math.max(...data);
+  const min = Math.min(...data);
+  const range = max - min || 1;
+  const stepX = chartWidth / (data.length - 1);
+
+  const coords = data.map((val, i) => {
+    const x = i * stepX;
+    const y = chartHeight - ((val - min) / range) * chartHeight;
+    return [x, y];
+  });
+
+  let d = `M ${coords[0][0]},${coords[0][1]}`;
+  for (let i = 1; i < coords.length - 1; i++) {
+    const [x1, y1] = coords[i];
+    const [x2, y2] = coords[i + 1];
+    const xc = (x1 + x2) / 2;
+    const yc = (y1 + y2) / 2;
+    d += ` Q ${x1},${y1} ${xc},${yc}`;
+  }
+  const [xn, yn] = coords[coords.length - 1];
+  d += ` T ${xn},${yn}`;
+
+  chart.setAttribute('d', d);
+  
+  const length = chart.getTotalLength();
+  chart.style.strokeDasharray = length;
+  chart.style.strokeDashoffset = length;
+  
+  setTimeout(() => {
+    chart.style.transition = 'stroke-dashoffset 0.8s ease-out';
+    chart.style.strokeDashoffset = '0';
+  }, 200);
+
+  // Update Y-axis labels (3 labels: max, mid, min)
+  if (yAxis) {
+    const mid = (max + min) / 2;
+    yAxis.innerHTML = `
+      <span>${max}</span>
+      <span>${mid.toFixed(0)}</span>
+      <span>${min}</span>
+    `;
+  }
+}
+
+// Render the 3 appliance charts with sample data (7 days) and Y-axis IDs
+renderMiniChart('applianceChart1', [18, 19, 20, 19, 21, 20, 20], 'miniYAxis1'); // Fridge
+renderMiniChart('applianceChart2', [8, 12, 10, 11, 13, 9, 11], 'miniYAxis2'); // AC
+renderMiniChart('applianceChart3', [5, 7, 9, 8, 6, 7, 7], 'miniYAxis3'); // Computer
 });

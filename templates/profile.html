@@ -9,9 +9,6 @@
 <body>
 
 <!-- Logo in top-right corner -->
-<div style="position: fixed; top: 16px; right: 16px; z-index: 300;">
-    <img src="/static/logo.png" alt="Logo" style="width:120px; height:auto;">
-</div>
 
 <div class="container">
 <!-- Sidebar -->
@@ -21,12 +18,18 @@
     <div class="username">tim</div>
     <div class="handle">@tiimwg</div>
   </div>
-<div class="sidebar-options">
+  
+  <div class="sidebar-options">
     <div class="option" id="toggleTheme">🌙 Dark mode</div>
-    <div class="option">⚙️ Settings</div>
+
     <a href="{{ url_for('logout') }}" class="option">🚪 Sign out</a>
-</div>
-  <div class="version">Version: 0.67</div>
+  </div>
+  
+  <!-- Logo and version at bottom -->
+  <div class="sidebar-bottom">
+    <img src="/static/logo.png" alt="Logo" class="sidebar-logo">
+    <div class="version">Version: 0.67</div>
+  </div>
 </div>
 
 <!-- Hamburger -->
@@ -67,20 +70,49 @@
 </svg>
 </div>
 <!-- WEEKLY STATS SECTION -->
-<div class="weekly-stats">
-  <div class="section-heading">Weekly Stats</div>
-  <div class="stat-cards">
-    <div class="stat-card">
-      <div class="stat-value">20 kWh</div>
-      <div class="stat-icon">🏠</div>
+<!-- Add this section to your profile.html AFTER the Weekly Stats section and BEFORE the bottom-nav -->
+
+<div class="appliance-stats">
+  <div class="section-heading">Appliance Usage</div>
+  
+  <div class="appliance-cards">
+    <!-- Fridge Card -->
+    <div class="appliance-card">
+      <div class="appliance-icon">🏠</div>
+      <div class="appliance-value">20 kWh</div>
+      <div class="appliance-name">Fridge</div>
+      <div class="mini-chart-container">
+        <div class="mini-y-axis" id="miniYAxis1"></div>
+        <svg class="mini-chart-svg" viewBox="0 0 100 30" preserveAspectRatio="none">
+          <path id="applianceChart1" stroke="#69c2e9" fill="none" stroke-width="2"></path>
+        </svg>
+      </div>
     </div>
-    <div class="stat-card">
-      <div class="stat-value">11 kWh</div>
-      <div class="stat-icon">💡</div>
+    
+    <!-- Air Conditioning Card -->
+    <div class="appliance-card">
+      <div class="appliance-icon">💡</div>
+      <div class="appliance-value">11 kWh</div>
+      <div class="appliance-name">AC</div>
+      <div class="mini-chart-container">
+        <div class="mini-y-axis" id="miniYAxis2"></div>
+        <svg class="mini-chart-svg" viewBox="0 0 100 30" preserveAspectRatio="none">
+          <path id="applianceChart2" stroke="#69c2e9" fill="none" stroke-width="2"></path>
+        </svg>
+      </div>
     </div>
-    <div class="stat-card">
-      <div class="stat-value">7 kWh</div>
-      <div class="stat-icon">🖥️</div>
+    
+    <!-- Computer Card -->
+    <div class="appliance-card">
+      <div class="appliance-icon">🖥️</div>
+      <div class="appliance-value">7 kWh</div>
+      <div class="appliance-name">Computer</div>
+      <div class="mini-chart-container">
+        <div class="mini-y-axis" id="miniYAxis3"></div>
+        <svg class="mini-chart-svg" viewBox="0 0 100 30" preserveAspectRatio="none">
+          <path id="applianceChart3" stroke="#69c2e9" fill="none" stroke-width="2"></path>
+        </svg>
+      </div>
     </div>
   </div>
 </div>
