@@ -8,27 +8,28 @@
 </head>
 <body>
 
-<!-- Logo in top-right corner -->
-<div style="position: fixed; top: 16px; right: 16px; z-index: 300;">
-    <img src="/static/logo.png" alt="Logo" style="width:120px; height:auto;">
-</div>
 
 <div class="container">
 <!-- Sidebar -->
 <div class="sidebar" id="sidebar">
   <div class="profile">
-    <img src="static/profile.jpg" alt="Profile" class="avatar">
+    <img src="/static/profile.jpg" alt="Profile" class="avatar">
     <div class="username">tim</div>
     <div class="handle">@tiimwg</div>
   </div>
-<div class="sidebar-options">
+  
+  <div class="sidebar-options">
     <div class="option" id="toggleTheme">🌙 Dark mode</div>
-    <div class="option">⚙️ Settings</div>
-    <a href="{{ url_for('logout') }}" class="option">🚪 Sign out</a>
-</div>
-  <div class="version">Version: 0.67</div>
-</div>
 
+    <a href="{{ url_for('logout') }}" class="option">🚪 Sign out</a>
+  </div>
+  
+  <!-- Logo and version at bottom -->
+  <div class="sidebar-bottom">
+    <img src="/static/logo.png" alt="Logo" class="sidebar-logo">
+    <div class="version">Version: 0.67</div>
+  </div>
+</div>
 <!-- Hamburger -->
 <button class="hamburger" id="hamburger">
   <svg viewBox="0 0 24 24" width="32" height="32" stroke="white" stroke-width="2" fill="none"
@@ -189,7 +190,7 @@
 
 </div>
 
-<script src="static/script.js"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
 
