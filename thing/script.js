@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   hamburger?.addEventListener('click', () => {
     // Add 'ready' class on first click to enable transitions
-    consokle.log('Hamburger clicked');
+    console.log('Hamburger clicked');
     if (!sidebar?.classList.contains('ready')) {
       sidebar?.classList.add('ready');
     }
