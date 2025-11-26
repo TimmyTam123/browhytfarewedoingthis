@@ -8,6 +8,11 @@
 </head>
 <body>
 
+<!-- Logo in top-right corner -->
+<div style="position: fixed; top: 16px; right: 16px; z-index: 300;">
+    <img src="/static/logo.png" alt="Logo" style="width:120px; height:auto;">
+</div>
+
 <div class="container">
 <!-- Sidebar -->
 <div class="sidebar" id="sidebar">
@@ -33,14 +38,14 @@
     <line x1="3" y1="18" x2="21" y2="18" />
   </svg>
 </button>
-  <!-- TOP BAR: level + progress -->
-  <div class="top-bar">
-    <div class="level-progress">
-      <span class="exp-text">15 exp until lv up</span>
-      <div class="exp-bar"><div class="exp-fill" style="width: 65%;"></div></div>
-      <span class="level">Lv 16</span>
-    </div>
-  </div>
+ <!-- TOP BAR: level + progress -->
+ <div class="top-bar">
+   <div class="level-progress">
+     <span class="exp-text">15 exp until lv up</span>
+     <div class="exp-bar"><div class="exp-fill" style="width: 65%;"></div></div>
+     <span class="level">Lv 16</span>
+   </div>
+ </div>
 
   <!-- CENTER: room + circular gauge -->
   <div class="center">
@@ -79,7 +84,8 @@
     <button class="btn small" id="increaseTemp">+</button>
     </div>
 </div>
-  </div>
+ </div>
+
 
   <!-- CHARTS -->
 <div class="charts">
@@ -182,3 +188,4 @@
 <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
+
