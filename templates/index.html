@@ -21,13 +21,17 @@
   
   <div class="sidebar-options">
     <div class="option" id="toggleTheme">🌙 Dark mode</div>
-
     <a href="{{ url_for('logout') }}" class="option">🚪 Sign out</a>
   </div>
   
   <!-- Logo and version at bottom -->
   <div class="sidebar-bottom">
-<img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="sidebar-logo">
+    <!-- Buy Me a Coffee Button -->
+    <div style="margin-bottom: 16px;">
+      <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="timmytam" data-color="#FFDD00" data-emoji="☕" data-font="Arial" data-text="Buy me a Coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff"></script>
+    </div>
+    
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="sidebar-logo">
     <div class="version">Version: 0.67</div>
   </div>
 </div>
