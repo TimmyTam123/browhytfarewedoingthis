@@ -412,28 +412,7 @@ max-width: 48%;
 
 .chart-svg path.animated {
  opacity: 1;
-
-/* Flash message styles used by templates */
-.flash {
-  margin-bottom: 12px;
-  text-align: center;
 }
-.flash.danger {
-  color: var(--bad);
-}
-.flash.warning {
-  color: var(--accent-2);
-}
-.flash.success {
-  color: var(--good);
-}
-.flash.info {
-  color: var(--muted);
-}
-
-/* Background helper for auth pages */
-.auth-container { position: relative; }
-.auth-box { position: relative; z-index: 1; }
 
 
 .chart-line {
@@ -1168,6 +1147,3 @@ html, body {
  position: relative;
 }
 
-/* removed old .gay helper */
-
-}
