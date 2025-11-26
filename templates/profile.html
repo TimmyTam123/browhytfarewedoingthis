@@ -42,26 +42,27 @@
   </div>
 
 <!-- YOUR DATA SECTION -->
-<div class="data-section">
+<!-- Place inside the profile 'Your Data' section -->
+<div class="data-section" id="profileData">
   <div class="section-heading">Your Data</div>
 
-  <!-- Toggle buttons -->
   <div class="toggle-buttons">
-    <button class="toggle-btn active" onclick="setMode('daily')">Daily</button>
-    <button class="toggle-btn" onclick="setMode('weekly')">Weekly</button>
+    <button class="toggle-btn active">Daily</button>
+    <button class="toggle-btn">Weekly</button>
   </div>
 
-  <!-- Dynamic buttons -->
-  <div class="date-buttons" id="dateButtons"></div>
+  <!-- Dynamic buttons will be injected here -->
+  <div class="date-buttons" id="dateButtonsProfile"></div>
 
-  <!-- Line graph -->
-  <div class="line-graph">
-    <div class="graph-grid">
-      <div class="graph-labels" id="graphLabels"></div>
-      <div class="graph-lines" id="graphLines"></div>
-    </div>
-  </div>
+  <!-- X-axis labels -->
+  <div class="graph-labels" id="graphLabelsProfile"></div>
+
+  <!-- Profile chart SVG (separate from home charts) -->
+  <svg class="chart-svg" width="220" height="100" aria-hidden="true">
+    <path id="profileChart" stroke="#69c2e9" fill="none" stroke-width="2"></path>
+  </svg>
 </div>
+
 <!-- WEEKLY STATS SECTION -->
 <div class="weekly-stats">
   <div class="section-heading">Weekly Stats</div>
