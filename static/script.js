@@ -428,7 +428,7 @@ function renderMiniChart(id, data, yAxisId) {
 }
 
 // Render the 3 appliance charts with sample data (7 days) and Y-axis IDs
-renderMiniChart('applianceChart1', [18, 19, 20, 19, 21, 20, 20], 'miniYAxis1'); // Fridge
-renderMiniChart('applianceChart2', [8, 12, 10, 11, 13, 9, 11], 'miniYAxis2'); // AC
+renderMiniChart('applianceChart1', [6, 3, 2, 7, 4, 5, 5], 'miniYAxis1'); // Fridge
+renderMiniChart('applianceChart2', [8, 9, 7, 11, 13, 9, 11], 'miniYAxis2'); // AC
 renderMiniChart('applianceChart3', [5, 7, 9, 8, 6, 7, 7], 'miniYAxis3'); // Computer
 });
