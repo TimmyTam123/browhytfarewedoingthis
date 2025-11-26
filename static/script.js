@@ -28,6 +28,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Room selector
+  const rooms = ["Living Room", "Bedroom", "Kitchen"];
+  let currentIndex = 0;
+
+  const prevRoomBtn = document.getElementById("prevRoom");
+  const nextRoomBtn = document.getElementById("nextRoom");
+  const roomNameEl = document.getElementById("roomName");
+
+  if (prevRoomBtn && nextRoomBtn && roomNameEl) {
+    prevRoomBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + rooms.length) % rooms.length;
+      roomNameEl.textContent = rooms[currentIndex];
+    });
+
+    nextRoomBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % rooms.length;
+      roomNameEl.textContent = rooms[currentIndex];
+    });
+  }
+
   // Gauge logic
   const displayMin = 0;
   const displayMax = 40;
@@ -135,83 +155,121 @@ document.addEventListener('DOMContentLoaded', () => {
   renderChart('chart7', [2, 4, 3, 5, 6, 4, 3]);
   renderChart('chart24', [1, 1, 1, 1, 1, 2, 3, 4, 2, 3, 2, 2, 2, 5, 4, 1, 3, 2, 1, 1, 1, 2, 1, 1]);
 
-  // Profile chart
+  // Profile chart data - Daily data has 24 hours (0-23), each representing kWh used per hour
   const dailyData = {
-    Mon: [2, 3, 4, 3, 5, 4, 3],
-    Tue: [1, 2, 3, 2, 4, 3, 2],
-    Wed: [3, 4, 5, 4, 6, 5, 4],
-    Thu: [2, 2, 3, 3, 4, 4, 3],
-    Fri: [1, 1, 2, 2, 3, 3, 2],
-    Sat: [2, 3, 2, 3, 4, 3, 2],
-    Sun: [3, 3, 4, 4, 5, 5, 4]
+    Mon: [0.3, 0.2, 0.2, 0.1, 0.2, 0.4, 0.8, 1.2, 1.5, 1.3, 1.1, 1.2, 1.4, 1.6, 1.5, 1.8, 2.1, 2.5, 2.8, 2.3, 1.9, 1.4, 0.9, 0.5],
+    Tue: [0.2, 0.2, 0.1, 0.1, 0.3, 0.5, 0.9, 1.1, 1.4, 1.2, 1.0, 1.1, 1.3, 1.5, 1.4, 1.7, 2.0, 2.4, 2.6, 2.1, 1.7, 1.2, 0.8, 0.4],
+    Wed: [0.3, 0.2, 0.2, 0.2, 0.3, 0.6, 1.0, 1.3, 1.6, 1.5, 1.3, 1.4, 1.6, 1.8, 1.7, 2.0, 2.3, 2.7, 3.0, 2.5, 2.1, 1.6, 1.0, 0.6],
+    Thu: [0.2, 0.1, 0.1, 0.1, 0.2, 0.4, 0.7, 1.0, 1.3, 1.1, 0.9, 1.0, 1.2, 1.4, 1.3, 1.6, 1.9, 2.2, 2.5, 2.0, 1.6, 1.1, 0.7, 0.4],
+    Fri: [0.3, 0.2, 0.2, 0.1, 0.3, 0.5, 0.8, 1.2, 1.5, 1.4, 1.2, 1.3, 1.5, 1.7, 1.6, 1.9, 2.2, 2.6, 2.9, 3.2, 2.8, 2.3, 1.5, 0.8],
+    Sat: [0.4, 0.3, 0.2, 0.2, 0.2, 0.3, 0.5, 0.9, 1.4, 1.6, 1.8, 2.0, 2.2, 2.1, 2.3, 2.5, 2.7, 2.9, 3.1, 2.9, 2.5, 2.0, 1.3, 0.7],
+    Sun: [0.5, 0.3, 0.3, 0.2, 0.2, 0.3, 0.6, 1.0, 1.5, 1.7, 1.9, 2.1, 2.3, 2.2, 2.4, 2.6, 2.8, 3.0, 3.2, 2.8, 2.4, 1.8, 1.2, 0.6]
   };
 
+  // Weekly data has 7 days (Mon-Sun), each representing total kWh used per day
   const weeklyData = {
-    Week1: [10, 12, 14, 13, 15, 14, 13],
-    Week2: [9, 11, 13, 12, 14, 13, 12],
-    Week3: [8, 10, 12, 11, 13, 12, 11],
-    Week4: [7, 9, 11, 10, 12, 11, 10]
+    'Week 1': [28.5, 26.3, 32.1, 24.8, 30.9, 35.2, 36.7],  // Mon-Sun
+    'Week 2': [27.8, 25.6, 31.4, 23.9, 29.8, 34.5, 35.9],  // Mon-Sun
+    'Week 3': [26.9, 24.8, 30.2, 23.1, 28.7, 33.6, 34.8],  // Mon-Sun
+    'Week 4': [25.7, 23.5, 29.1, 22.3, 27.5, 32.4, 33.6]   // Mon-Sun
   };
 
-function renderProfileChart(id, data) {
-  const chart = document.getElementById(id);
-  if (!chart || data.length < 2) return;
+  // Profile chart rendering function
+  function renderProfileChart(id, data) {
+    const chart = document.getElementById(id);
+    if (!chart || data.length < 2) {
+      console.log('Chart element not found or insufficient data');
+      return;
+    }
 
-  const chartHeight = 100;
-  const chartWidth = 220;
-  const max = Math.max(...data);
-  const min = Math.min(...data);
-  const range = max - min || 1;
-  const stepX = chartWidth / (data.length - 1);
+    const chartHeight = 80; // Reduced to leave padding
+    const chartWidth = 200; // Reduced to leave padding
+    const padding = 10;
+    const max = Math.max(...data);
+    const min = Math.min(...data);
+    const range = max - min || 1;
+    const stepX = chartWidth / (data.length - 1);
 
-  const coords = data.map((val, i) => {
-    const x = i * stepX;
-    const y = chartHeight - ((val - min) / range) * chartHeight;
-    return [x, y];
-  });
-
-  let d = `M ${coords[0][0]},${coords[0][1]}`;
-  for (let i = 1; i < coords.length - 1; i++) {
-    const [x1, y1] = coords[i];
-    const [x2, y2] = coords[i + 1];
-    const xc = (x1 + x2) / 2;
-    const yc = (y1 + y2) / 2;
-    d += ` Q ${x1},${y1} ${xc},${yc}`;
-  }
-  const [xn, yn] = coords[coords.length - 1];
-  d += ` T ${xn},${yn}`;
-
-  chart.setAttribute('d', d);
-
-  const length = chart.getTotalLength();
-  chart.style.strokeDasharray = length;
-  chart.style.strokeDashoffset = length;
-  chart.style.transition = 'stroke-dashoffset 1s ease-out';
-  chart.getBoundingClientRect();
-  chart.style.strokeDashoffset = '0';
-}
-  function updateDateButtons(mode) {
-  const dateButtonsContainer = document.getElementById('dateButtonsProfile');
-  dateButtonsContainer.innerHTML = '';
-
-  const dataSet = mode === 'Daily' ? dailyData : weeklyData;
-
-  Object.entries(dataSet).forEach(([label, values]) => {
-    const btn = document.createElement('button');
-    btn.className = 'mini-btn';
-    btn.textContent = label;
-    btn.addEventListener('click', () => {
-      renderProfileChart('profileChart', values);
+    const coords = data.map((val, i) => {
+      const x = padding + (i * stepX);
+      const y = padding + (chartHeight - ((val - min) / range) * chartHeight);
+      return [x, y];
     });
-    dateButtonsContainer.appendChild(btn);
-  });
 
-  // Auto-render first dataset
-  const firstKey = Object.keys(dataSet)[0];
-  renderProfileChart('profileChart', dataSet[firstKey]);
-}
+    let d = `M ${coords[0][0]},${coords[0][1]}`;
+    for (let i = 1; i < coords.length - 1; i++) {
+      const [x1, y1] = coords[i];
+      const [x2, y2] = coords[i + 1];
+      const xc = (x1 + x2) / 2;
+      const yc = (y1 + y2) / 2;
+      d += ` Q ${x1},${y1} ${xc},${yc}`;
+    }
+    const [xn, yn] = coords[coords.length - 1];
+    d += ` T ${xn},${yn}`;
 
+    chart.setAttribute('d', d);
+    
+    // Force visibility
+    chart.style.opacity = '1';
+    chart.setAttribute('stroke', '#69c2e9');
+    chart.setAttribute('stroke-width', '2');
+    chart.setAttribute('fill', 'none');
 
+    const length = chart.getTotalLength();
+    chart.style.strokeDasharray = length;
+    chart.style.strokeDashoffset = length;
+    
+    // Force reflow
+    void chart.getBoundingClientRect();
+    
+    // Animate in
+    setTimeout(() => {
+      chart.style.transition = 'stroke-dashoffset 1s ease-out';
+      chart.style.strokeDashoffset = '0';
+    }, 10);
+    
+    console.log('Chart rendered:', d);
+  }
+
+  // Update date buttons based on mode (Daily or Weekly)
+  function updateDateButtons(mode) {
+    if (!dateButtonsContainer) return;
+    
+    dateButtonsContainer.innerHTML = '';
+
+    const dataSet = mode === 'Daily' ? dailyData : weeklyData;
+
+    Object.entries(dataSet).forEach(([label, values], index) => {
+      const btn = document.createElement('button');
+      btn.className = 'mini-btn';
+      btn.textContent = label;
+      
+      // Add active class to first button
+      if (index === 0) {
+        btn.classList.add('active');
+      }
+      
+      btn.addEventListener('click', () => {
+        // Remove active class from all mini buttons
+        dateButtonsContainer.querySelectorAll('.mini-btn').forEach(b => {
+          b.classList.remove('active');
+        });
+        // Add active class to clicked button
+        btn.classList.add('active');
+        
+        // Render the chart with selected data
+        renderProfileChart('profileChart', values);
+      });
+      
+      dateButtonsContainer.appendChild(btn);
+    });
+
+    // Auto-render first dataset
+    const firstKey = Object.keys(dataSet)[0];
+    renderProfileChart('profileChart', dataSet[firstKey]);
+  }
+
+  // Toggle between Daily and Weekly
   toggleBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       toggleBtns.forEach(b => b.classList.remove('active'));
@@ -220,6 +278,6 @@ function renderProfileChart(id, data) {
     });
   });
 
-  // Initial render
+  // Initial render (Daily mode by default)
   updateDateButtons('Daily');
 });

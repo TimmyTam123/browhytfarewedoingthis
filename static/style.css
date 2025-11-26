@@ -218,6 +218,38 @@ html, body {
  color: var(--border); /* adapts to theme */
 }
 
+.room-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px; /* space between items */
+  margin-bottom: 20px;
+  
+}
+
+.room {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: white;
+  min-width: 140px; /* keeps it stable while changing rooms */
+  text-align: center;
+}
+
+.room-arrow {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+   border: 2px solid var(--border-2);
+ background: var(--panel-5);
+ color: var(--text);
+ box-shadow: 0 0 20px var(--shadow-1);
+}
 
 /* Optional hover */
 :root[data-theme="dark"] .hamburger {
@@ -333,7 +365,7 @@ html, body {
 
 .lists-wrapper {
  width: 100%;
- margin-top: 48px;
+ margin-top: 20px;
  padding-bottom: 40px;
 }
 
@@ -391,7 +423,7 @@ max-width: 48%;
  stroke: var(--accent);
  stroke-width: 2;
  fill: none;
- opacity: 0;
+
  transition: opacity 0.5s ease-out;
 }
 
@@ -1133,3 +1165,65 @@ html, body {
  position: relative;
 }
 
+/* Mini date buttons styling */
+.mini-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: var(--panel-3);
+  border: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.mini-btn:hover {
+  background: var(--panel-4);
+  transform: translateY(-1px);
+}
+
+.mini-btn.active {
+  background: var(--accent-2);
+  color: var(--bg);
+  border-color: var(--accent-2);
+  font-weight: 600;
+}
+
+/* Date buttons container */
+.date-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+/* Toggle buttons styling */
+.toggle-buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.toggle-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: var(--panel-5);
+  border: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.toggle-btn:hover {
+  background: var(--panel-4);
+}
+
+.toggle-btn.active {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+  font-weight: 600;
+}
