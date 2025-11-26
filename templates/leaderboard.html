@@ -26,12 +26,12 @@
 
 <!-- Hamburger -->
 <button class="hamburger" id="hamburger">
-  <svg viewBox="0 0 24 24" width="32" height="32" stroke="white" stroke-width="2" fill="none"
-       stroke-linecap="round" stroke-linejoin="round">
-    <line x1="3" y1="6" x2="21" y2="6" />
-    <line x1="3" y1="12" x2="21" y2="12" />
-    <line x1="3" y1="18" x2="21" y2="18" />
-  </svg>
+<svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none"
+     stroke-linecap="round" stroke-linejoin="round">
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+</svg>
 </button>
   <!-- TOP BAR: level + progress -->
   <div class="top-bar">
@@ -62,16 +62,44 @@
 </ol>
     </div>
 
-    <div class="section">
-      <div class="title">How to Improve</div>
-      <ul>
-        <li>Swap to a more energy-efficient fridge (current: >60kWh/w → target: 18kWh/w)</li>
-        <li>Reduce aircon usage (current: >90kWh/w → target: <50kWh/w)</li>
-      </ul>
-    </div>
+<div class="leaderboard-footer">
+  <h2 class="footer-heading">How to improve</h2>
 
-    <a href="{{ url_for('home') }}" class="back-btn">← Back to Dashboard</a>
+  <div class="efficiency-card">
+    
+    <div class="card-content">
+      <div class="card-title">Swapping to a more energy efficient fridge</div>
+      <div class="card-metrics">
+        <div class="metric">Current: <span>26 kWh/w</span></div>
+        <div class="metric">Target: <span>18 kWh/w</span></div>
+      </div>
+    </div>
+    <svg class="card-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="16" y="8" width="32" height="48" rx="4" ry="4" />
+  <line x1="16" y1="32" x2="48" y2="32" />
+  <line x1="24" y1="20" x2="28" y2="20" />
+  <line x1="24" y1="44" x2="28" y2="44" />
+</svg>
   </div>
+
+  <div class="efficiency-card">
+    
+    <div class="card-content">
+      <div class="card-title">Reduce Airconditioner Usage</div>
+      <div class="card-metrics">
+        <div class="metric">Current: <span>76 kWh/w</span></div>
+        <div class="metric">Target: <span>&lt;50 kWh/w</span></div>
+      </div>
+    </div>
+    <svg class="card-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="8" y="16" width="48" height="16" rx="4" ry="4" />
+  <line x1="16" y1="24" x2="48" y2="24" />
+  <path d="M16 40c0 4 4 4 4 8s-4 4-4 8" />
+  <path d="M32 40c0 4 4 4 4 8s-4 4-4 8" />
+  <path d="M48 40c0 4 4 4 4 8s-4 4-4 8" />
+</svg>
+  </div>
+</div>
 
   <!-- Bottom nav bar (same as index.html) -->
     <!-- BOTTOM NAV -->
@@ -97,7 +125,7 @@
     </svg>
   </button>
   </a>
-
+<a href="/profile">
   <button class="nav-btn side-btn">
   <!-- Profile icon -->
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -107,6 +135,7 @@
     <circle cx="12" cy="7" r="4" />
   </svg>
 </button>
+</a>
 </div>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>

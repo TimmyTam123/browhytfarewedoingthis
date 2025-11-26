@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Home Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="profile">
+    <img src="/static/profile.jpg" alt="Profile" class="avatar">
+    <div class="username">tim</div>
+    <div class="handle">@tiimwg</div>
+  </div>
+  <div class="sidebar-options">
+    <div class="option" id="toggleTheme">🌙 Dark mode</div>
+    <div class="option">⚙️ Settings</div>
+    <div class="option">🚪 Sign out</div>
+  </div>
+  <div class="version">Version: 0.67</div>
+</div>
+
+<!-- Hamburger -->
+<button class="hamburger" id="hamburger">
+<svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none"
+     stroke-linecap="round" stroke-linejoin="round">
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+</svg>
+</button>
+  <!-- TOP BAR: level + progress -->
+  <div class="top-bar">
+    <div class="level-progress">
+      <span class="exp-text">15 exp until lv up</span>
+      <div class="exp-bar"><div class="exp-fill" style="width: 65%;"></div></div>
+      <span class="level">Lv 16</span>
+    </div>
+  </div>
+
+<!-- YOUR DATA SECTION -->
+<!-- Place inside the profile 'Your Data' section -->
+<div class="data-section" id="profileData">
+  <div class="section-heading">Your Data</div>
+
+  <div class="toggle-buttons">
+    <button class="toggle-btn active">Daily</button>
+    <button class="toggle-btn">Weekly</button>
+  </div>
+
+  <!-- Dynamic buttons will be injected here -->
+  <div class="date-buttons" id="dateButtonsProfile"></div>
+
+  <!-- X-axis labels -->
+  <div class="graph-labels" id="graphLabelsProfile"></div>
+
+  <!-- Profile chart SVG (separate from home charts) -->
+  <svg class="chart-svg" width="220" height="100" aria-hidden="true">
+    <path id="profileChart" stroke="#69c2e9" fill="none" stroke-width="2"></path>
+  </svg>
+</div>
+
+<!-- WEEKLY STATS SECTION -->
+<div class="weekly-stats">
+  <div class="section-heading">Weekly Stats</div>
+  <div class="stat-cards">
+    <div class="stat-card">
+      <div class="stat-value">20 kWh</div>
+      <div class="stat-icon">🏠</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">11 kWh</div>
+      <div class="stat-icon">💡</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">7 kWh</div>
+      <div class="stat-icon">🖥️</div>
+    </div>
+  </div>
+</div>
+
+
+
+  <div class="bottom-nav">
+  <a href="/leaderboard">
+  <button class="nav-btn side-btn">
+    <!-- Bar chart icon -->
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
+      <line x1="18" y1="20" x2="18" y2="10" />
+      <line x1="12" y1="20" x2="12" y2="4" />
+      <line x1="6" y1="20" x2="6" y2="14" />
+    </svg>
+  </button>
+</a>
+<a href="{{ url_for('home') }}">
+  <button class="nav-btn home-btn">
+    <!-- Home icon -->
+    <svg viewBox="0 0 24 24" fill="none" stroke="#2a3442" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
+      <path d="M3 9L12 2L21 9V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" />
+      <polyline points="9 22 9 12 15 12 15 22" />
+    </svg>
+  </button>
+</a> 
+<a href="/profile">
+  <button class="nav-btn side-btn">
+  <!-- Profile icon -->
+  
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
+    <path d="M20 21v-2a4 4 0 0 0-3-3.87" />
+    <path d="M4 21v-2a4 4 0 0 1 3-3.87" />
+    <circle cx="12" cy="7" r="4" />
+  </svg>
+
+</button>
+</a>
+</div>
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
