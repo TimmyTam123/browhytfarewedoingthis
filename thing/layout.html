@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Dashboard{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <!-- Logo in top-right corner -->
     <div style="position: fixed; top: 16px; right: 16px; z-index: 300;">
-        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" style="width:120px; height:auto;"> <!-- doubled size -->
+        <img src="./logo.png" alt="Logo" style="width:120px; height:auto;"> <!-- doubled size -->
     </div>
 
     {% block content %}{% endblock %}
