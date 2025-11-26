@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>Leaderboard</title>
+ <link rel="stylesheet" href="/thing/style.css" />
+</head>
+<body>
+
+
+
+<div class="container">
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="profile">
+    <img src="/static/profile.jpg" alt="Profile" class="avatar">
+    <div class="username">tim</div>
+    <div class="handle">@tiimwg</div>
+  </div>
+  
+  <div class="sidebar-options">
+    <div class="option" id="toggleTheme">🌙 Dark mode</div>
+
+    <a href="{{ url_for('logout') }}" class="option">🚪 Sign out</a>
+  </div>
+  
+  <!-- Logo and version at bottom -->
+  <div class="sidebar-bottom">
+    <img src="/static/logo.png" alt="Logo" class="sidebar-logo">
+    <div class="version">Version: 0.67</div>
+  </div>
+</div>
+
+
+<!-- Hamburger -->
+<button class="hamburger" id="hamburger">
+<svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none"
+    stroke-linecap="round" stroke-linejoin="round">
+ <line x1="3" y1="6" x2="21" y2="6" />
+ <line x1="3" y1="12" x2="21" y2="12" />
+ <line x1="3" y1="18" x2="21" y2="18" />
+</svg>
+</button>
+ <!-- TOP BAR: level + progress -->
+ <div class="top-bar">
+   <div class="level-progress">
+     <span class="exp-text">15 exp until lv up</span>
+     <div class="exp-bar"><div class="exp-fill" style="width: 65%;"></div></div>
+     <span class="level">Lv 16</span>
+   </div>
+ </div>
+<div class="section exp-box">
+ <div class="exp-title">Exp Gain</div>
+ <div class="exp-line"><span class="label">Passive:</span> <span class="value">+1/h</span></div>
+ <div class="exp-line"><span class="label">Low Energy Use Bonus:</span> <span class="value">+3/h</span></div>
+<div class="exp-line dimmed"><span class="label"><i>Max Bonus:</i></span> <span class="value"><i>+5/h</i></span></div>
+ <div class="exp-line total"><span class="label">Total:</span> <span class="value">+4/h</span></div>
+</div>
+
+
+   <div class="section leaderboard-list">
+     <div class="title">Leaderboards</div>
+<ol class="leaderboard-list">
+ <li><span>1. Tim</span><span>49,702 exp</span></li>
+ <li><span>2. Rico</span><span>41,868 exp</span></li>
+ <li style="border-bottom: none;"><span>3. Joe</span><span>41,857 exp</span></li>
+ <li class="divider-row"><hr class="leaderboard-divider" /></li>
+ <li><span>179. Frederick</span><span>1,705 exp</span></li>
+ <li><span>180. You</span><span>1,702 exp</span></li>
+ <li><span>181. Ludwig</span><span>1,694 exp</span></li>
+</ol>
+   </div>
+
+
+<div class="leaderboard-footer">
+ <h2 class="footer-heading">How to improve</h2>
+
+
+ <div class="efficiency-card">
+  
+   <div class="card-content">
+     <div class="card-title">Swapping to a more energy efficient fridge</div>
+     <div class="card-metrics">
+       <div class="metric">Current: <span>26 kWh/w</span></div>
+       <div class="metric">Target: <span>18 kWh/w</span></div>
+     </div>
+   </div>
+   <svg class="card-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+ <rect x="16" y="8" width="32" height="48" rx="4" ry="4" />
+ <line x1="16" y1="32" x2="48" y2="32" />
+ <line x1="24" y1="20" x2="28" y2="20" />
+ <line x1="24" y1="44" x2="28" y2="44" />
+</svg>
+ </div>
+
+
+ <div class="efficiency-card">
+  
+   <div class="card-content">
+     <div class="card-title">Reduce Airconditioner Usage</div>
+     <div class="card-metrics">
+       <div class="metric">Current: <span>76 kWh/w</span></div>
+       <div class="metric">Target: <span>&lt;50 kWh/w</span></div>
+     </div>
+   </div>
+   <svg class="card-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+ <rect x="8" y="16" width="48" height="16" rx="4" ry="4" />
+ <line x1="16" y1="24" x2="48" y2="24" />
+ <path d="M16 40c0 4 4 4 4 8s-4 4-4 8" />
+ <path d="M32 40c0 4 4 4 4 8s-4 4-4 8" />
+ <path d="M48 40c0 4 4 4 4 8s-4 4-4 8" />
+</svg>
+ </div>
+</div>
+
+
+ <!-- Bottom nav bar (same as index.html) -->
+   <!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <a href="/leaderboard">
+  <button class="nav-btn side-btn">
+    <!-- Bar chart icon -->
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
+      <line x1="18" y1="20" x2="18" y2="10" />
+      <line x1="12" y1="20" x2="12" y2="4" />
+      <line x1="6" y1="20" x2="6" y2="14" />
+    </svg>
+  </button>
+</a>
+<a href="{{ url_for('home') }}">
+  <button class="nav-btn home-btn">
+    <!-- Home icon -->
+    <svg viewBox="0 0 24 24" fill="none" stroke="#2a3442" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
+      <path d="M3 9L12 2L21 9V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" />
+      <polyline points="9 22 9 12 15 12 15 22" />
+    </svg>
+  </button>
+</a> 
+<a href="/profile">
+  <button class="nav-btn side-btn">
+  <!-- Profile icon -->
+  
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
+    <path d="M20 21v-2a4 4 0 0 0-3-3.87" />
+    <path d="M4 21v-2a4 4 0 0 1 3-3.87" />
+    <circle cx="12" cy="7" r="4" />
+  </svg>
+
+</button>
+</a>
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
