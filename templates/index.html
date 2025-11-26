@@ -21,11 +21,11 @@
     <div class="username">tim</div>
     <div class="handle">@tiimwg</div>
   </div>
-  <div class="sidebar-options">
+<div class="sidebar-options">
     <div class="option" id="toggleTheme">🌙 Dark mode</div>
     <div class="option">⚙️ Settings</div>
-    <div class="option">🚪 Sign out</div>
-  </div>
+    <a href="{{ url_for('logout') }}" class="option">🚪 Sign out</a>
+</div>
   <div class="version">Version: 0.67</div>
 </div>
 
@@ -98,11 +98,11 @@
   <div class="title">Last 7 Days</div>
     <div class="chart-with-axis">
       <div class="y-axis-labels">
-        <span>20</span>
-        <span>15</span>
-        <span>10</span>
-        <span>5</span>
-        <span>0</span>
+        <span>50 kWh</span>
+        <span>45 kWh</span>
+        <span>40 kWh</span>
+        <span>35 kWh</span>
+        <span>30 kWh</span>
       </div>
       <svg class="chart-svg" viewBox="0 0 200 80" preserveAspectRatio="none">
         <path id="chart7" fill="none" stroke="#69c2e9" stroke-width="2" />
